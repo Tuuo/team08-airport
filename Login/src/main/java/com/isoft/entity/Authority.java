@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity(name = "t_authority")
+//权限
 public class Authority  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,9 +52,6 @@ public class Authority  implements Serializable {
      * 设置
      * @param authority
      */
-    public void setAuthority(String authority) {
-        this.authority = authority;
-    }
 
     public String toString() {
         return "Authority{id = " + id + ", authority = " + authority + "}";
