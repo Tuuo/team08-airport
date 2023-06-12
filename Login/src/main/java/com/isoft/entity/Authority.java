@@ -2,6 +2,8 @@ package com.isoft.entity;
 
 
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +11,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity(name = "t_authority")
-
+@Data
 public class Authority  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,36 +26,4 @@ public class Authority  implements Serializable {
         this.authority = authority;
     }
 
-    /**
-     * 获取
-     * @return id
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * 设置
-     * @param id
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    /**
-     * 获取
-     * @return authority
-     */
-    public String getAuthority() {
-        return authority;
-    }
-
-    /**
-     * 设置
-     * @param authority
-     */
-
-    public String toString() {
-        return "Authority{id = " + id + ", authority = " + authority + "}";
-    }
 }
