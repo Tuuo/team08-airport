@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity(name = "t_customer")
+//用户
 public class Customer implements Serializable {
     private static final long serialVersionUID = 7898396078272083417L;
     @Id
