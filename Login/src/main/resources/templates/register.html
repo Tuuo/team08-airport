@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <!-- 引入 jQuery 文件 -->
+
+    <style>
+        .demo-reg-container {
+            width: 320px;
+            margin: 21px auto 0;
+        }
+
+        .demo-reg-other .layui-icon {
+            position: relative;
+            display: inline-block;
+            margin: 0 2px;
+            top: 2px;
+            font-size: 26px;
+        }
+
+        .layui-bg-gray {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .layui-col-md6 {
+            margin: 10vh 25vw;
+        }
+    </style>
+</head>
+<body>
+
+<div class="layui-bg-gray" style="padding: 16px;">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md6">
+            <div class="layui-card">
+                <div class="layui-card-header">注册</div>
+                <div class="layui-card-body">
+<!--                    th:action="@{/registerUser}" -->
+                    <form class="layui-form" method="post">
+                        <div class="demo-reg-container">
+                            <div class="layui-form-item">
+                                <div class="layui-input-wrap">
+                                    <div class="layui-input-prefix">
+                                        <i class="layui-icon layui-icon-username"></i>
+                                    </div>
+                                    <input type="text" name="username" value="" lay-verify="userName"
+                                           placeholder="用户名"
+                                           autocomplete="off" class="layui-input" lay-affix="clear">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-wrap">
+                                    <div class="layui-input-prefix">
+                                        <i class="layui-icon layui-icon-password"></i>
+                                    </div>
+                                    <input type="password" name="password" value="" lay-verify="pass"
+                                           placeholder="密码" autocomplete="off" class="layui-input" id="reg-password"
+                                           lay-affix="eye">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <div class="layui-input-wrap">
+                                    <div class="layui-input-prefix">
+                                        <i class="layui-icon layui-icon-password"></i>
+                                    </div>
+                                    <input type="password" name="confirmPassword" value=""
+                                           lay-verify="required|confirmPassword" placeholder="确认密码"
+                                           autocomplete="off" class="layui-input" lay-affix="eye">
+                                </div>
+                            </div>
+
+                            <div class="layui-form-item">
+                                <input type="checkbox" id="agreement" name="agreement" lay-verify="agreement"
+                                       lay-skin="primary"
+                                       title="同意">
+                                <a href="" target="_blank" style="position: relative; top: 6px; left: -15px;">
+                                    <ins>用户协议</ins>
+                                </a>
+                            </div>
+                            <div class="layui-form-item">
+                                <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="demo-reg">注册</button>
+                            </div>
+                            <div class="layui-form-item demo-reg-other">
+                                <label>第三方账号注册</label>
+                                <span style="padding: 0 21px 0 6px;">
+        <a href="javascript:;"><i class="layui-icon layui-icon-login-qq" style="color: #3492ed;"></i></a>
+        <a href="javascript:;"><i class="layui-icon layui-icon-login-wechat" style="color: #4daf29;"></i></a>
+        <a href="javascript:;"><i class="layui-icon layui-icon-login-weibo" style="color: #cf1900;"></i></a>
+      </span>
+                                <a th:href="@{/toLogin}">登录已有帐号</a></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="/qinjiang/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+<script src="/layui/layui.js"></script>
+
+
+<script>
+    layui.use(function () {
+        var $ = layui.$;
+        var form = layui.form;
+        var layer = layui.layer;
+
+        // 自定义验证规则
+        form.verify({
+            // 确认密码
+            confirmPassword: function (value, item) {
+                var passwordValue = $('#reg-password').val();
+                if (value !== passwordValue) {
+                    return '两次密码输入不一致';
+                }
+            },
+            userName : function(value) {
+                if (value.length < 4) {
+                    return '登录名至少得4个字符啊';
+                }
+            },
+            pass : [ /^[\S]{4,12}$/, '密码必须4到12位，且不能出现空格' ]
+        });
+        form.on('submit(demo-reg)', function (data) {
+            if(!data.field.agreement){
+                layer.msg('您必须勾选同意用户协议才能注册');
+                return false;
+            }
+            // 禁用表单按钮，防止重复提交
+            $(data.elem).prop('disabled', true);
+            // console.log(data.elem);
+            console.log(data.form.action)
+            var formData = {
+                "username": data.field.username,
+                "password": data.field.password
+            };
+
+            // 发送表单数据到后端接口
+            $.post(data.form.action, formData, function (result) {
+                // 启用表单按钮
+                $(data.elem).prop('disabled', false);
+                console.log(result.message)
+                console.log(result.code)
+
+                if (result.code === 200) {
+                    // 注册成功，跳转到登录页面
+                    layer.alert(result.message, {icon: 1}, function () {
+                        location.href = "/toLogin";
+                    });
+                } else {
+                    // 注册失败，弹出错误提示
+                    layer.alert(result.message, {icon: 2});
+                }
+            }, 'json');
+
+            return false;
+        });
+    });
+</script>
+
+</body>
+</html>
