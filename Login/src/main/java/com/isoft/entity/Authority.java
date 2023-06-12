@@ -9,7 +9,7 @@ import javax.persistence.Id;
 import java.io.Serializable;
 
 @Entity(name = "t_authority")
-//权限
+//权限验证
 public class Authority  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
