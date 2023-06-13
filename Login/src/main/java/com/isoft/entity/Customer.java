@@ -14,6 +14,7 @@ import java.io.Serializable;
 
 @Entity(name = "t_customer")
 @Data
+//用户实体类
 public class Customer implements Serializable {
     private static final long serialVersionUID = 7898396078272083417L;
     @Id
