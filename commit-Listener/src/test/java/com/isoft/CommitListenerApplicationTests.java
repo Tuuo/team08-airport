@@ -95,6 +95,12 @@ class CommonListenerApplicationTests {
     @Autowired
     DFME_STLS_STNDRepository stndRepository;
 
+    @Autowired
+    Dflt_Dfie_ArptRepository dflt_dfie_arptRepository;
+
+    @Autowired
+    Dflt_DfieRepository dflt_dfieRepository;
+
     /**
      * 吴修清
      * @throws ClassNotFoundException
@@ -967,6 +973,142 @@ class CommonListenerApplicationTests {
     }
 
     @Test
+    void testDFIE() throws ClassNotFoundException, SQLException, FileNotFoundException {
+
+        File file = new File("D://Temp//DFOE-DFIE-20170606201203.xml");
+        SAXReader reader = new SAXReader();
+        Document doc = null;
+        try {
+            doc = reader.read(file);    //读取文档
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+        Element root = doc.getRootElement();    //取得根元素
+        Iterator<Element> iter = root.elementIterator();
+
+
+        //META
+        Element element = root.element("META");
+        Meta meta = new Meta();
+        while (iter.hasNext()) {
+            Element linkman = iter.next();
+            if (linkman == element) {
+                meta.setSndr(linkman.elementText("SNDR"));
+                String rcvrStr = StringUtil.trimToNull(linkman.elementText("RCVR"));
+                String rcvr = rcvrStr == null ? null : rcvrStr;
+                meta.setRcvr(rcvr);
+                String seqnStr = linkman.elementText("SEQN");
+                long seqn = Long.parseLong(seqnStr);
+                meta.setSeqn(seqn);
+                meta.setDdtm(linkman.elementText("DDTM"));
+                meta.setType(linkman.elementText("TYPE"));
+                meta.setStyp(linkman.elementText("STYP"));
+                System.out.println(meta);
+                break;
+            } else {
+                continue;
+            }
+        }
+
+//        metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
+//                meta.getDdtm(), meta.getType(), meta.getStyp());
+
+        //Dflt
+        Element element2 = root.element("DFLT");
+        Element element3 = element2.element("AIRL");
+        List<Element> elementList = element2.elements();
+        List<Element> elements = element3.elements("ARPT");
+        Dflt_Dfie dflt = new Dflt_Dfie();
+        Dflt_Dfie_Arpt dflt_dfie_arpt = new Dflt_Dfie_Arpt();
+        Iterator<Element> iter2 = element3.elementIterator();
+        Iterator<Element> iter3 = element2.elementIterator();
+        while (iter.hasNext()) {
+            Element linkman = iter.next();
+            if (linkman == element2) {
+                String FLIDStr = linkman.elementText("FLID");
+                long FLID = Long.parseLong(FLIDStr);
+                dflt.setFlid(FLID);
+                dflt.setAfid(linkman.elementText("AFID"));
+                dflt.setFfid(linkman.elementText("FFID"));dflt.setFide(linkman.elementText("FIDE"));
+                dflt.setTest(linkman.elementText("TEST"));dflt.setAwcd(linkman.elementText("AWCD"));
+                dflt.setFlno(linkman.elementText("FLNO"));dflt.setFexd(linkman.elementText("FEXD"));
+                dflt.setFimd(linkman.elementText("FIMD"));dflt.setFlio(linkman.elementText("FLIO"));
+                dflt.setFltk(linkman.elementText("FLTK"));dflt.setFatt(linkman.elementText("FATT"));
+                dflt.setPatt(linkman.elementText("PATT"));dflt.setMfid(linkman.elementText("MFID"));
+                dflt.setMffi(linkman.elementText("MFFI"));dflt.setCftp(linkman.elementText("CFTP"));
+                dflt.setCfno(linkman.elementText("CFNO"));dflt.setStat(linkman.elementText("STAT"));
+                dflt.setAbst(linkman.elementText("ABST"));dflt.setAbrs(linkman.elementText("ABRS"));
+                dflt.setIsta(linkman.elementText("ISTA"));dflt.setIast(linkman.elementText("IAST"));
+                dflt.setIars(linkman.elementText("IARS"));dflt.setMsta(linkman.elementText("MSTA"));
+                dflt.setMabs(linkman.elementText("MABS"));dflt.setMabr(linkman.elementText("MABR"));
+                dflt.setMist(linkman.elementText("MIST"));dflt.setMias(linkman.elementText("MIAS"));
+                dflt.setMiar(linkman.elementText("MIAR"));dflt.setBort(linkman.elementText("BORT"));
+                dflt.setMbor(linkman.elementText("MBOR"));dflt.setTbrt(linkman.elementText("TBRT"));
+                dflt.setMtbr(linkman.elementText("MTBR"));dflt.setLbdt(linkman.elementText("LBDT"));
+                dflt.setMlbd(linkman.elementText("MLBD"));dflt.setPokt(linkman.elementText("POKT"));
+                dflt.setMpok(linkman.elementText("MPOK"));dflt.setApot(linkman.elementText("APOT"));
+                dflt.setApot(linkman.elementText("DETT"));dflt.setDrtt(linkman.elementText("DRTT"));
+                dflt.setDelt(linkman.elementText("DELT"));dflt.setDrlt(linkman.elementText("DRLT"));
+                dflt.setVip(linkman.elementText("VIP"));dflt.setSflg(linkman.elementText("SFLG"));
+                dflt.setPast(linkman.elementText("PAST"));dflt.setGtls(linkman.elementText("GTLS"));
+                dflt.setBlls(linkman.elementText("BLLS"));dflt.setFces(linkman.elementText("FCES"));
+                dflt.setFcee(linkman.elementText("FCEE"));dflt.setFcrs(linkman.elementText("FCRS"));
+                dflt.setFcre(linkman.elementText("FCRE"));dflt.setMces(linkman.elementText("MCES"));
+                dflt.setMcee(linkman.elementText("MCEE"));dflt.setMcrs(linkman.elementText("MCRS"));
+                dflt.setMcre(linkman.elementText("MCRE"));dflt.setFcdp(linkman.elementText("FCDP"));
+                dflt.setMcdp(linkman.elementText("MCDP"));dflt.setChls(linkman.elementText("CHLS"));
+                dflt.setStls(linkman.elementText("STLS"));dflt.setNmcd(linkman.elementText("NMCD"));
+                dflt.setJmcd(linkman.elementText("JMCD"));dflt.setFldt(linkman.elementText("FLDT"));
+                dflt.setLldt(linkman.elementText("LLDT"));dflt.setCont(linkman.elementText("CONT"));
+                dflt.setProx(linkman.elementText("PROX"));
+                System.out.println(dflt);
+//                dflt_dfieRepository.saveDflt(
+//                        meta.getSeqn(),dflt.getFlid(),dflt.getAfid(),dflt.getFfid(),dflt.getFide(),
+//                        dflt.getTest(),dflt.getAwcd(),dflt.getFlno(),dflt.getFexd(),dflt.getFimd(),
+//                        dflt.getFlio(),dflt.getFltk(),dflt.getFatt(),dflt.getPatt(),dflt.getMfid(),
+//                        dflt.getMffi(),dflt.getCftp(),dflt.getCfno(),dflt.getStat(),dflt.getAbst(),
+//                        dflt.getAbrs(),dflt.getIsta(),dflt.getIast(),dflt.getIars(),dflt.getMsta(),
+//                        dflt.getMabs(),dflt.getMabr(),dflt.getMist(),dflt.getMias(),dflt.getMiar(),
+//                        dflt.getBort(),dflt.getMbor(),dflt.getTbrt(),dflt.getMtbr(),dflt.getLbdt(),
+//                        dflt.getMlbd(),dflt.getPokt(),dflt.getMpok(),dflt.getApot(),dflt.getDett(),
+//                        dflt.getDrtt(),dflt.getDelt(),dflt.getDrlt(),dflt.getVip(),dflt.getSflg(),
+//                        dflt.getPast(),dflt.getGtls(),dflt.getBlls(),dflt.getFces(),dflt.getFcee(),
+//                        dflt.getFcrs(),dflt.getFcre(),dflt.getMces(),dflt.getMcee(),dflt.getMcrs(),
+//                        dflt.getMcre(),dflt.getFcdp(),dflt.getMcdp(),dflt.getChls(),dflt.getStls(),
+//                        dflt.getNmcd(),dflt.getJmcd(),dflt.getFldt(),dflt.getLldt(),dflt.getCont(),
+//                        dflt.getProx());
+
+                while (iter2.hasNext()) {
+                    Element linkman2 = iter2.next();
+                    for (Element element5 : elements) {
+                        if (linkman2 == element5) {
+                            dflt_dfie_arpt.setApno(linkman2.elementText("APNO"));
+                            dflt_dfie_arpt.setApcd(linkman2.elementText("APCD"));
+                            dflt_dfie_arpt.setFptt(linkman2.elementText("FPTT"));
+                            dflt_dfie_arpt.setFett(linkman2.elementText("FETT"));
+                            dflt_dfie_arpt.setFrtt(linkman2.elementText("FRTT"));
+                            dflt_dfie_arpt.setFplt(linkman2.elementText("FPLT"));
+                            dflt_dfie_arpt.setFelt(linkman2.elementText("FELT"));
+                            dflt_dfie_arpt.setFrlt(linkman2.elementText("FRLT"));
+                            dflt_dfie_arpt.setApat(linkman2.elementText("APAT"));
+
+                            System.out.println(dflt_dfie_arpt);
+//                            dflt_dfie_arptRepository.saveDflt(
+//                                    dflt_dfie_arpt.getApno(),dflt_dfie_arpt.getApcd(),
+//                                    dflt_dfie_arpt.getFptt(),dflt_dfie_arpt.getFett(),
+//                                    dflt_dfie_arpt.getFrtt(),dflt_dfie_arpt.getFplt(),
+//                                    dflt_dfie_arpt.getFelt(),dflt_dfie_arpt.getFrlt(),
+//                                    dflt_dfie_arpt.getApat(),dflt.getFlid());
+                        } else {
+                            continue;
+                        }
+                    }
+                }
+                break;
+            }
+        }
+    }
+    @Test
     void testCKOE() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
         File file = new File("D://Temp//plane//DFME-CKOE-20170601060011.xml");
@@ -1110,6 +1252,7 @@ class CommonListenerApplicationTests {
                 dflt.getMist(), dflt.getFrtt());
     }
 
+    //赵
     @Test
     void testDLYE() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
@@ -1551,6 +1694,7 @@ class CommonListenerApplicationTests {
 
     }
 
+    //张
 
     @Test
     void testONRE() throws ClassNotFoundException, SQLException, FileNotFoundException {
