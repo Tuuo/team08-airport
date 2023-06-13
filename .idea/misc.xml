@@ -12,6 +12,7 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/Login/pom.xml" />
+        <option value="$PROJECT_DIR$/commit-Listener/pom.xml" />
       </list>
     </option>
   </component>

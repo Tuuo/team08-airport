@@ -6,9 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Login" />
         <module name="team08-airport22" />
+        <module name="Login" />
         <module name="team08-airport" />
+        <module name="commit-Listener" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="11" />
@@ -17,6 +18,7 @@
     <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding utf-8" />
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Login" options="-parameters" />
+      <module name="commit-Listener" options="-parameters" />
       <module name="team08-airport" options="" />
       <module name="team08-airport22" options="" />
     </option>
