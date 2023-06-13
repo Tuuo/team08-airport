@@ -13,9 +13,9 @@ public class Apot implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long meta_id;
-    private String code;
-    private String frcd;
+    private Long meta_id; //消息序号
+    private String code;//机场三字代码
+    private String frcd;//机场四字代码
     private String apat;
     private String cnnm;
     private String ennm;

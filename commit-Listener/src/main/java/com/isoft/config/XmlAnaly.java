@@ -55,6 +55,14 @@ public class XmlAnaly {
     private Dflt_Gtls_GateRepository dflt_gtls_gateRepository = BeanContext.getBean(Dflt_Gtls_GateRepository.class);
     private Dflt_GtlsRepository dflt_gtlsRepository = BeanContext.getBean(Dflt_GtlsRepository.class);
 
+    private DFME_LBDERepository dfme_lbdeRepository = BeanContext.getBean(DFME_LBDERepository.class);
+    private DFME_ONRERepository onreRepository = BeanContext.getBean(DFME_ONRERepository.class);
+    private DFME_POKERepository pokeRepository = BeanContext.getBean(DFME_POKERepository.class);
+    private DFME_STLSRepository stlsRepository = BeanContext.getBean(DFME_STLSRepository.class);
+    private DFME_STLS_STNDRepository stndRepository = BeanContext.getBean(DFME_STLS_STNDRepository.class);
+
+
+
 
     /**
      * BASE_APUE
@@ -1469,6 +1477,306 @@ public class XmlAnaly {
 
         }
     }
+
+    /**
+     * DFME-LBDE
+     * @param path
+     */
+    public void getLBDE(String path){
+        File file = new File(path);
+        SAXReader reader = new SAXReader();
+        Document doc = null;
+        try {
+            doc = reader.read(file);    //读取文档
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+        Element root = doc.getRootElement();    //取得根元素
+        Iterator<Element> iter = root.elementIterator();
+//        System.out.println(root);
+        //META
+        Element element = root.element("META");
+        Meta meta = new Meta();
+        while (iter.hasNext()) {
+            Element linkman = iter.next();
+            if (linkman == element) {
+                meta.setSndr(linkman.elementText("SNDR"));
+                meta.setRcvr(linkman.elementText("RCVR"));
+                String seqnStr = linkman.elementText("SEQN");
+                long seqn = Long.parseLong(seqnStr);
+                meta.setSeqn(seqn);
+                meta.setDdtm(linkman.elementText("DDTM"));
+                meta.setType(linkman.elementText("TYPE"));
+                meta.setStyp(linkman.elementText("STYP"));
+                System.out.println(meta);
+                break;
+            } else {
+                continue;
+            }
+        }
+
+        metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
+                meta.getDdtm(), meta.getType(), meta.getStyp());
+        //LBDE
+        Element element2 = root.element("DFLT");
+        DFME_LBDE lbde = new DFME_LBDE();
+        while (iter.hasNext()) {
+            Element linkman = iter.next();
+            if (linkman == element2) {
+                String flidStr = linkman.elementText("FLID");
+                long flid = Long.parseLong(flidStr);
+                lbde.setFlid(flid);
+                lbde.setFfid(linkman.elementText("FFID"));
+                lbde.setFide(linkman.elementText("FIDE"));
+                lbde.setFatt(linkman.elementText("FATT"));
+                lbde.setStat(linkman.elementText("STAT"));
+                lbde.setIsta(linkman.elementText("ISTA"));
+                lbde.setLbdt(linkman.elementText("LBDT"));
+                lbde.setMsta(linkman.elementText("MSTA"));
+                lbde.setMist(linkman.elementText("MIST"));
+                lbde.setMlbd(linkman.elementText("MLBD"));
+                System.out.println(lbde);
+                break;
+            } else {
+                continue;
+            }
+        }
+        dfme_lbdeRepository.saveDFME(meta.getSeqn(), lbde.getFlid(), lbde.getFfid(),
+                lbde.getFide(), lbde.getFatt(), lbde.getStat(), lbde.getIsta(),
+                lbde.getLbdt(), lbde.getMsta(), lbde.getMist(), lbde.getMlbd());
+
+    }
+
+    /**
+     * DFME-ONRE
+     */
+    public void getONRE(String path){
+        File file = new File(path);
+        SAXReader reader = new SAXReader();
+        Document doc = null;
+        try {
+            doc = reader.read(file);    //读取文档
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+        Element root = doc.getRootElement();    //取得根元素
+        Iterator<Element> iter = root.elementIterator();
+//        System.out.println(root);
+        //META
+        Element element = root.element("META");
+        Meta meta = new Meta();
+        while (iter.hasNext()) {
+            Element linkman = iter.next();
+            if (linkman == element) {
+                meta.setSndr(linkman.elementText("SNDR"));
+                meta.setRcvr(linkman.elementText("RCVR"));
+                String seqnStr = linkman.elementText("SEQN");
+                long seqn = Long.parseLong(seqnStr);
+                meta.setSeqn(seqn);
+                meta.setDdtm(linkman.elementText("DDTM"));
+                meta.setType(linkman.elementText("TYPE"));
+                meta.setStyp(linkman.elementText("STYP"));
+                System.out.println(meta);
+                break;
+            } else {
+                continue;
+            }
+        }
+
+        metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
+                meta.getDdtm(), meta.getType(), meta.getStyp());
+        //ONRE
+        Element element2 = root.element("DFLT");
+        DFME_ONRE onre = new DFME_ONRE();
+        while (iter.hasNext()) {
+            Element linkman = iter.next();
+            if (linkman == element2) {
+                String flidStr = linkman.elementText("FLID");
+                long flid = Long.parseLong(flidStr);
+                onre.setFlid(flid);
+                onre.setFfid(linkman.elementText("FFID"));
+                onre.setFide(linkman.elementText("FIDE"));
+                onre.setFatt(linkman.elementText("FATT"));
+                onre.setStat(linkman.elementText("STAT"));
+                onre.setIsta(linkman.elementText("ISTA"));
+                onre.setMsta(linkman.elementText("MSTA"));
+                onre.setMist(linkman.elementText("MIST"));
+                onre.setPast(linkman.elementText("PAST"));
+                onre.setEldt(linkman.elementText("ELDT"));
+                System.out.println(onre);
+                break;
+            } else {
+                continue;
+            }
+        }
+        onreRepository.saveDFME(meta.getSeqn(), onre.getFlid(), onre.getFfid(),
+                onre.getFide(), onre.getFatt(), onre.getStat(), onre.getIsta(),
+                onre.getMsta(), onre.getMist(), onre.getPast(), onre.getEldt());
+    }
+
+    /**
+     * DFME-POKE
+     */
+    public void getPOKE(String path){
+        File file = new File(path);
+        SAXReader reader = new SAXReader();
+        Document doc = null;
+        try {
+            doc = reader.read(file);    //读取文档
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+        Element root = doc.getRootElement();    //取得根元素
+        Iterator<Element> iter = root.elementIterator();
+//        System.out.println(root);
+        //META
+        Element element = root.element("META");
+        Meta meta = new Meta();
+        while (iter.hasNext()) {
+            Element linkman = iter.next();
+            if (linkman == element) {
+                meta.setSndr(linkman.elementText("SNDR"));
+                meta.setRcvr(linkman.elementText("RCVR"));
+                String seqnStr = linkman.elementText("SEQN");
+                long seqn = Long.parseLong(seqnStr);
+                meta.setSeqn(seqn);
+                meta.setDdtm(linkman.elementText("DDTM"));
+                meta.setType(linkman.elementText("TYPE"));
+                meta.setStyp(linkman.elementText("STYP"));
+                System.out.println(meta);
+                break;
+            } else {
+                continue;
+            }
+        }
+
+        metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
+                meta.getDdtm(), meta.getType(), meta.getStyp());
+        //ONRE
+        Element element2 = root.element("DFLT");
+        DFME_POKE poke = new DFME_POKE();
+        while (iter.hasNext()) {
+            Element linkman = iter.next();
+            if (linkman == element2) {
+                String flidStr = linkman.elementText("FLID");
+                long flid = Long.parseLong(flidStr);
+                poke.setFlid(flid);
+                poke.setFfid(linkman.elementText("FFID"));
+                poke.setFide(linkman.elementText("FIDE"));
+                poke.setFatt(linkman.elementText("FATT"));
+                poke.setStat(linkman.elementText("STAT"));
+                poke.setIsta(linkman.elementText("ISTA"));
+                poke.setPokt(linkman.elementText("POKT"));
+                poke.setMsta(linkman.elementText("MSTA"));
+                poke.setMist(linkman.elementText("MIST"));
+                poke.setMpok(linkman.elementText("MPOK"));
+
+                System.out.println(poke);
+                break;
+            } else {
+                continue;
+            }
+        }
+        pokeRepository.saveDFME(meta.getSeqn(), poke.getFlid(), poke.getFfid(),
+                poke.getFide(), poke.getFatt(), poke.getStat(), poke.getIsta(),
+                poke.getPokt(), poke.getMsta(), poke.getMist(), poke.getMpok());
+    }
+    /**
+     * DFME-STLS
+     */
+    public void getSTLS(String path){
+        File file = new File(path);
+        SAXReader reader = new SAXReader();
+        Document doc = null;
+        try {
+            doc = reader.read(file);    //读取文档
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        }
+        Element root = doc.getRootElement();    //取得根元素
+        Iterator<Element> iter = root.elementIterator();
+//        System.out.println(root);
+        //META
+        Element element = root.element("META");
+        Meta meta = new Meta();
+        while (iter.hasNext()) {
+            Element linkman = iter.next();
+            if (linkman == element) {
+                meta.setSndr(linkman.elementText("SNDR"));
+                meta.setRcvr(linkman.elementText("RCVR"));
+                String seqnStr = linkman.elementText("SEQN");
+                long seqn = Long.parseLong(seqnStr);
+                meta.setSeqn(seqn);
+                meta.setDdtm(linkman.elementText("DDTM"));
+                meta.setType(linkman.elementText("TYPE"));
+                meta.setStyp(linkman.elementText("STYP"));
+                System.out.println(meta);
+                break;
+            } else {
+                continue;
+            }
+        }
+
+        metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
+                meta.getDdtm(), meta.getType(), meta.getStyp());
+        //STLS
+        Element element2 = root.element("DFLT");
+        DFME_STLS stls = new DFME_STLS();
+        while (iter.hasNext()) {
+            Element linkman = iter.next();
+            if (linkman == element2) {
+                String flidStr = linkman.elementText("FLID");
+                long flid = Long.parseLong(flidStr);
+                stls.setFlid(flid);
+                stls.setFfid(linkman.elementText("FFID"));
+                stls.setFide(linkman.elementText("FIDE"));
+                stls.setFatt(linkman.elementText("FATT"));
+
+                System.out.println(stls);
+                stlsRepository.saveDFME(meta.getSeqn(), stls.getFlid(), stls.getFfid(),
+                        stls.getFide(), stls.getFatt());
+                break;
+            } else {
+                continue;
+            }
+        }
+
+
+        //STLS_STND
+        Element element3 = root.element("DFLT");
+        Element element4 = element3.element("STLS");
+        List<Element> elements = element4.elements();
+        Iterator<Element> iter2 = element4.elementIterator();
+        DFME_STLS_STND stnd = new DFME_STLS_STND();
+        while (iter2.hasNext()) {
+            Element linkman = iter2.next();
+//            System.out.println(linkman);
+            System.out.println(elements);
+            for (Element element1 : elements) {
+                System.out.println(element1);
+                if (linkman == element1) {
+                    stnd.setStno(linkman.elementText("STNO"));
+                    stnd.setCode(linkman.elementText("CODE"));
+                    stnd.setEstr(linkman.elementText("ESTR"));
+                    stnd.setEend(linkman.elementText("EEND"));
+                    stnd.setRstr(linkman.elementText("RSTR"));
+                    stnd.setRend(linkman.elementText("REND"));
+                    stnd.setCssi(linkman.elementText("CSSI"));
+                    stnd.setBtsc(linkman.elementText("BTSC"));
+
+                    System.out.println(stnd);
+                    stndRepository.saveDFME(stls.getFlid(), stnd.getStno(), stnd.getCode(),
+                            stnd.getEstr(), stnd.getEend(), stnd.getRstr(), stnd.getRend(),
+                            stnd.getCssi(), stnd.getBtsc());
+//                    break;
+                } else {
+                    continue;
+                }
+            }
+        }
+    }
+
+
 }
 
 
