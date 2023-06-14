@@ -139,6 +139,10 @@ public void onFileCreate(File file) {
             xmlAnaly.getDFIE(file.getPath());
             System.out.println("DFOE-DFIE-"+file.getPath()+"已经插入了");
             break;
+        case "DFOE-DFDL":
+            xmlAnaly.getDFDL(file.getPath());
+            System.out.println("DFOE-DFDL-"+file.getPath()+"已经插入了");
+            break;
     }
         System.out.println("创建文件");
 }

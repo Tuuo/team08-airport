@@ -1160,7 +1160,7 @@ class CommonListenerApplicationTests {
                 while (iter3.hasNext()) {
                     Element linkman4 = iter3.next();
 //                    System.out.println(linkman4);
-                    if(linkman4 == element4){
+                    if (linkman4 == element4) {
                         dflt.setFces(linkman4.elementText("FCES"));
                         dflt.setFcee(linkman4.elementText("FCEE"));
                         dflt.setFcrs(linkman4.elementText("FCRS"));
@@ -1177,7 +1177,7 @@ class CommonListenerApplicationTests {
                 dflt.setStls(linkman.elementText("STLS"));
                 while (iter5.hasNext()) {
                     Element linkman5 = iter5.next();
-                    if(linkman5 == element6 ){
+                    if (linkman5 == element6) {
                         System.out.println(linkman5);
                         dflt.setNmcd(linkman5.elementText("NMCD"));
                         System.out.println(dflt.getNmcd());
@@ -1191,19 +1191,19 @@ class CommonListenerApplicationTests {
                 dflt.setProx(linkman.elementText("PROX"));
                 System.out.println(dflt);
                 dflt_dfieRepository.saveDflt(
-                        meta.getSeqn(),dflt.getFlid(),dflt.getAfid(),dflt.getFfid(),dflt.getFide(),
-                        dflt.getTest(),dflt.getAwcd(),dflt.getFlno(),dflt.getFexd(),dflt.getFimd(),
-                        dflt.getFlio(),dflt.getFltk(),dflt.getFatt(),dflt.getPatt(),dflt.getMfid(),
-                        dflt.getMffi(),dflt.getCftp(),dflt.getCfno(),dflt.getStat(),dflt.getAbst(),
-                        dflt.getAbrs(),dflt.getIsta(),dflt.getIast(),dflt.getIars(),dflt.getMsta(),
-                        dflt.getMabs(),dflt.getMabr(),dflt.getMist(),dflt.getMias(),dflt.getMiar(),
-                        dflt.getBort(),dflt.getMbor(),dflt.getTbrt(),dflt.getMtbr(),dflt.getLbdt(),
-                        dflt.getMlbd(),dflt.getPokt(),dflt.getMpok(),dflt.getApot(),dflt.getDett(),
-                        dflt.getDrtt(),dflt.getDelt(),dflt.getDrlt(),dflt.getVip(),dflt.getSflg(),
-                        dflt.getPast(),dflt.getGtls(),dflt.getBlls(),dflt.getFces(),dflt.getFcee(),
-                        dflt.getFcrs(),dflt.getFcre(),dflt.getMces(),dflt.getMcee(),dflt.getMcrs(),
-                        dflt.getMcre(),dflt.getFcdp(),dflt.getMcdp(),dflt.getChls(),dflt.getStls(),
-                        dflt.getNmcd(),dflt.getJmcd(),dflt.getFldt(),dflt.getLldt(),dflt.getCont(),
+                        meta.getSeqn(), dflt.getFlid(), dflt.getAfid(), dflt.getFfid(), dflt.getFide(),
+                        dflt.getTest(), dflt.getAwcd(), dflt.getFlno(), dflt.getFexd(), dflt.getFimd(),
+                        dflt.getFlio(), dflt.getFltk(), dflt.getFatt(), dflt.getPatt(), dflt.getMfid(),
+                        dflt.getMffi(), dflt.getCftp(), dflt.getCfno(), dflt.getStat(), dflt.getAbst(),
+                        dflt.getAbrs(), dflt.getIsta(), dflt.getIast(), dflt.getIars(), dflt.getMsta(),
+                        dflt.getMabs(), dflt.getMabr(), dflt.getMist(), dflt.getMias(), dflt.getMiar(),
+                        dflt.getBort(), dflt.getMbor(), dflt.getTbrt(), dflt.getMtbr(), dflt.getLbdt(),
+                        dflt.getMlbd(), dflt.getPokt(), dflt.getMpok(), dflt.getApot(), dflt.getDett(),
+                        dflt.getDrtt(), dflt.getDelt(), dflt.getDrlt(), dflt.getVip(), dflt.getSflg(),
+                        dflt.getPast(), dflt.getGtls(), dflt.getBlls(), dflt.getFces(), dflt.getFcee(),
+                        dflt.getFcrs(), dflt.getFcre(), dflt.getMces(), dflt.getMcee(), dflt.getMcrs(),
+                        dflt.getMcre(), dflt.getFcdp(), dflt.getMcdp(), dflt.getChls(), dflt.getStls(),
+                        dflt.getNmcd(), dflt.getJmcd(), dflt.getFldt(), dflt.getLldt(), dflt.getCont(),
                         dflt.getProx());
 
                 while (iter2.hasNext()) {
@@ -1222,11 +1222,11 @@ class CommonListenerApplicationTests {
 
                             System.out.println(dflt_dfie_arpt);
                             dflt_dfie_arptRepository.saveDflt(
-                                    dflt_dfie_arpt.getApno(),dflt_dfie_arpt.getApcd(),
-                                    dflt_dfie_arpt.getFptt(),dflt_dfie_arpt.getFett(),
-                                    dflt_dfie_arpt.getFrtt(),dflt_dfie_arpt.getFplt(),
-                                    dflt_dfie_arpt.getFelt(),dflt_dfie_arpt.getFrlt(),
-                                    dflt_dfie_arpt.getApat(),dflt.getFlid());
+                                    dflt_dfie_arpt.getApno(), dflt_dfie_arpt.getApcd(),
+                                    dflt_dfie_arpt.getFptt(), dflt_dfie_arpt.getFett(),
+                                    dflt_dfie_arpt.getFrtt(), dflt_dfie_arpt.getFplt(),
+                                    dflt_dfie_arpt.getFelt(), dflt_dfie_arpt.getFrlt(),
+                                    dflt_dfie_arpt.getApat(), dflt.getFlid());
                         } else {
                             continue;
                         }
@@ -1240,7 +1240,7 @@ class CommonListenerApplicationTests {
     @Test
     void testDFDL() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
-        File file = new File("D://Temp//大飞机.xml");
+        File file = new File("E://Temp//DFOE-DFDL-20170606175234.xml");
         SAXReader reader = new SAXReader();
         Document doc = null;
         try {
@@ -1280,9 +1280,11 @@ class CommonListenerApplicationTests {
 
         //Dflt
         Element element2 = root.element("DFLT");
+        List<Element> elementList = root.elements("DFLT");
 
         Element element3 = element2.element("AIRL");
         List<Element> elements = element3.elements("ARPT");
+//        Iterator<Element> iter2 = element3.elementIterator();
 
         Element element4 = element2.element("CKLS");
 
@@ -1292,10 +1294,10 @@ class CommonListenerApplicationTests {
         Element element8 = element7.element("SFLT");
 
 
-        Dflt_Dfdl dflt= new Dflt_Dfdl();
+        Dflt_Dfdl dflt = new Dflt_Dfdl();
         Dflt_Dfdl_Arpt dflt_dfdl_arpt = new Dflt_Dfdl_Arpt();
 
-        Iterator<Element> iter2 = element3.elementIterator();
+
         Iterator<Element> iter3 = element2.elementIterator();
         Iterator<Element> iter5 = element7.elementIterator();
         Iterator<Element> iter6 = element2.elementIterator();
@@ -1303,98 +1305,100 @@ class CommonListenerApplicationTests {
 
         while (iter.hasNext()) {
             Element linkman = iter.next();
-            if (linkman == element2) {
-                String FLIDStr = linkman.elementText("FLID");
-                long FLID = Long.parseLong(FLIDStr);
-                dflt.setFlid(FLID);
-                dflt.setAfid(linkman.elementText("AFID"));
-                dflt.setFfid(linkman.elementText("FFID"));
-                dflt.setFide(linkman.elementText("FIDE"));
-                dflt.setTest(linkman.elementText("TEST"));
-                dflt.setAwcd(linkman.elementText("AWCD"));
-                dflt.setFlno(linkman.elementText("FLNO"));
-                dflt.setFexd(linkman.elementText("FEXD"));
-                dflt.setFimd(linkman.elementText("FIMD"));
-                dflt.setFlio(linkman.elementText("FLIO"));
-                dflt.setFltk(linkman.elementText("FLTK"));
-                dflt.setFatt(linkman.elementText("FATT"));
-                dflt.setPatt(linkman.elementText("PATT"));
-                dflt.setMfid(linkman.elementText("MFID"));
-                dflt.setMffi(linkman.elementText("MFFI"));
-                dflt.setCftp(linkman.elementText("CFTP"));
-                dflt.setCfno(linkman.elementText("CFNO"));
-                dflt.setStat(linkman.elementText("STAT"));
-                dflt.setAbst(linkman.elementText("ABST"));
-                dflt.setAbrs(linkman.elementText("ABRS"));
-                dflt.setIsta(linkman.elementText("ISTA"));
-                dflt.setIast(linkman.elementText("IAST"));
-                dflt.setIars(linkman.elementText("IARS"));
-                dflt.setMsta(linkman.elementText("MSTA"));
-                dflt.setMabs(linkman.elementText("MABS"));
-                dflt.setMabr(linkman.elementText("MABR"));
-                dflt.setMist(linkman.elementText("MIST"));
-                dflt.setMias(linkman.elementText("MIAS"));
-                dflt.setMiar(linkman.elementText("MIAR"));
-                dflt.setBort(linkman.elementText("BORT"));
-                dflt.setMbor(linkman.elementText("MBOR"));
-                dflt.setTbrt(linkman.elementText("TBRT"));
-                dflt.setMtbr(linkman.elementText("MTBR"));
-                dflt.setLbdt(linkman.elementText("LBDT"));
-                dflt.setMlbd(linkman.elementText("MLBD"));
-                dflt.setPokt(linkman.elementText("POKT"));
-                dflt.setMpok(linkman.elementText("MPOK"));
-                dflt.setApot(linkman.elementText("APOT"));
-                dflt.setApot(linkman.elementText("DETT"));
-                dflt.setDrtt(linkman.elementText("DRTT"));
-                dflt.setDelt(linkman.elementText("DELT"));
-                dflt.setDrlt(linkman.elementText("DRLT"));
-                dflt.setVip(linkman.elementText("VIP"));
+            for (Element element1 : elementList) {
+//                System.out.println(element1);
+                if (linkman == element1) {
+                    String FLIDStr = linkman.elementText("FLID");
+                    long FLID = Long.parseLong(FLIDStr);
+                    dflt.setFlid(FLID);
+                    dflt.setAfid(linkman.elementText("AFID"));
+                    dflt.setFfid(linkman.elementText("FFID"));
+                    dflt.setFide(linkman.elementText("FIDE"));
+                    dflt.setTest(linkman.elementText("TEST"));
+                    dflt.setAwcd(linkman.elementText("AWCD"));
+                    dflt.setFlno(linkman.elementText("FLNO"));
+                    dflt.setFexd(linkman.elementText("FEXD"));
+                    dflt.setFimd(linkman.elementText("FIMD"));
+                    dflt.setFlio(linkman.elementText("FLIO"));
+                    dflt.setFltk(linkman.elementText("FLTK"));
+                    dflt.setFatt(linkman.elementText("FATT"));
+                    dflt.setPatt(linkman.elementText("PATT"));
+                    dflt.setMfid(linkman.elementText("MFID"));
+                    dflt.setMffi(linkman.elementText("MFFI"));
+                    dflt.setCftp(linkman.elementText("CFTP"));
+                    dflt.setCfno(linkman.elementText("CFNO"));
+                    dflt.setStat(linkman.elementText("STAT"));
+                    dflt.setAbst(linkman.elementText("ABST"));
+                    dflt.setAbrs(linkman.elementText("ABRS"));
+                    dflt.setIsta(linkman.elementText("ISTA"));
+                    dflt.setIast(linkman.elementText("IAST"));
+                    dflt.setIars(linkman.elementText("IARS"));
+                    dflt.setMsta(linkman.elementText("MSTA"));
+                    dflt.setMabs(linkman.elementText("MABS"));
+                    dflt.setMabr(linkman.elementText("MABR"));
+                    dflt.setMist(linkman.elementText("MIST"));
+                    dflt.setMias(linkman.elementText("MIAS"));
+                    dflt.setMiar(linkman.elementText("MIAR"));
+                    dflt.setBort(linkman.elementText("BORT"));
+                    dflt.setMbor(linkman.elementText("MBOR"));
+                    dflt.setTbrt(linkman.elementText("TBRT"));
+                    dflt.setMtbr(linkman.elementText("MTBR"));
+                    dflt.setLbdt(linkman.elementText("LBDT"));
+                    dflt.setMlbd(linkman.elementText("MLBD"));
+                    dflt.setPokt(linkman.elementText("POKT"));
+                    dflt.setMpok(linkman.elementText("MPOK"));
+                    dflt.setApot(linkman.elementText("APOT"));
+                    dflt.setApot(linkman.elementText("DETT"));
+                    dflt.setDrtt(linkman.elementText("DRTT"));
+                    dflt.setDelt(linkman.elementText("DELT"));
+                    dflt.setDrlt(linkman.elementText("DRLT"));
+                    dflt.setVip(linkman.elementText("VIP"));
 
-                while (iter5.hasNext()) {
-                    Element linkman6 = iter5.next();
-                    if(linkman6 == element8 ){
-                        dflt.setSfaw(linkman6.elementText("SFAW"));
-                        dflt.setSfno(linkman6.elementText("SFNO"));
+                    while (iter5.hasNext()) {
+                        Element linkman6 = iter5.next();
+                        if (linkman6 == element8) {
+                            dflt.setSfaw(linkman6.elementText("SFAW"));
+                            dflt.setSfno(linkman6.elementText("SFNO"));
+                        }
                     }
-                }
 
-                dflt.setPast(linkman.elementText("PAST"));
-                dflt.setGtls(linkman.elementText("GTLS"));
-                dflt.setBlls(linkman.elementText("BLLS"));
+                    dflt.setPast(linkman.elementText("PAST"));
+                    dflt.setGtls(linkman.elementText("GTLS"));
+                    dflt.setBlls(linkman.elementText("BLLS"));
 
-                while (iter3.hasNext()) {
-                    Element linkman4 = iter3.next();
-                    if(linkman4 == element4){
-                        dflt.setFces(linkman4.elementText("FCES"));
-                        dflt.setFcee(linkman4.elementText("FCEE"));
-                        dflt.setFcrs(linkman4.elementText("FCRS"));
-                        dflt.setFcre(linkman4.elementText("FCRE"));
-                        dflt.setMces(linkman4.elementText("MCES"));
-                        dflt.setMcee(linkman4.elementText("MCEE"));
-                        dflt.setMcrs(linkman4.elementText("MCRS"));
-                        dflt.setMcre(linkman4.elementText("MCRE"));
-                        dflt.setFcdp(linkman4.elementText("FCDP"));
-                        dflt.setMcdp(linkman4.elementText("MCDP"));
+                    while (iter3.hasNext()) {
+                        Element linkman4 = iter3.next();
+                        if (linkman4 == element4) {
+                            dflt.setFces(linkman4.elementText("FCES"));
+                            dflt.setFcee(linkman4.elementText("FCEE"));
+                            dflt.setFcrs(linkman4.elementText("FCRS"));
+                            dflt.setFcre(linkman4.elementText("FCRE"));
+                            dflt.setMces(linkman4.elementText("MCES"));
+                            dflt.setMcee(linkman4.elementText("MCEE"));
+                            dflt.setMcrs(linkman4.elementText("MCRS"));
+                            dflt.setMcre(linkman4.elementText("MCRE"));
+                            dflt.setFcdp(linkman4.elementText("FCDP"));
+                            dflt.setMcdp(linkman4.elementText("MCDP"));
+                        }
                     }
-                }
-                dflt.setChls(linkman.elementText("CHLS"));
-                dflt.setStls(linkman.elementText("STLS"));
+                    dflt.setChls(linkman.elementText("CHLS"));
+                    dflt.setStls(linkman.elementText("STLS"));
 
-                while (iter6.hasNext()) {
-                    Element linkman5 = iter6.next();
-                    if(linkman5 == element6 ){
-                        System.out.println(linkman5);
-                        dflt.setNmcd(linkman5.elementText("NMCD"));
-                        System.out.println(dflt.getNmcd());
-                        dflt.setJmcd(linkman5.elementText("JMCD"));
+                    while (iter6.hasNext()) {
+                        Element linkman5 = iter6.next();
+                        if (linkman5 == element6) {
+                            System.out.println(linkman5);
+                            dflt.setNmcd(linkman5.elementText("NMCD"));
+                            System.out.println(dflt.getNmcd());
+                            dflt.setJmcd(linkman5.elementText("JMCD"));
+                        }
                     }
-                }
 
-                dflt.setFldt(linkman.elementText("FLDT"));
-                dflt.setLldt(linkman.elementText("LLDT"));
-                dflt.setCont(linkman.elementText("CONT"));
-                dflt.setProx(linkman.elementText("PROX"));
-                System.out.println(dflt);
+                    dflt.setFldt(linkman.elementText("FLDT"));
+                    dflt.setLldt(linkman.elementText("LLDT"));
+                    dflt.setCont(linkman.elementText("CONT"));
+                    dflt.setProx(linkman.elementText("PROX"));
+                    System.out.println(dflt);
                 dflt_dfdlRepository.saveDflt(
                         meta.getSeqn(),dflt.getFlid(),dflt.getAfid(),dflt.getFfid(),dflt.getFide(),
                         dflt.getTest(),dflt.getAwcd(),dflt.getFlno(),dflt.getFexd(),dflt.getFimd(),
@@ -1412,19 +1416,23 @@ class CommonListenerApplicationTests {
                         dflt.getNmcd(),dflt.getJmcd(),dflt.getFldt(),dflt.getLldt(),dflt.getCont(),
                         dflt.getProx());
 
-                while (iter2.hasNext()) {
-                    Element linkman2 = iter2.next();
-                    for (Element element5 : elements) {
-                        if (linkman2 == element5) {
-                            dflt_dfdl_arpt.setApno(linkman2.elementText("APNO"));
-                            dflt_dfdl_arpt.setApcd(linkman2.elementText("APCD"));
-                            dflt_dfdl_arpt.setFptt(linkman2.elementText("FPTT"));
-                            dflt_dfdl_arpt.setFett(linkman2.elementText("FETT"));
-                            dflt_dfdl_arpt.setFrtt(linkman2.elementText("FRTT"));
-                            dflt_dfdl_arpt.setFplt(linkman2.elementText("FPLT"));
-                            dflt_dfdl_arpt.setFelt(linkman2.elementText("FELT"));
-                            dflt_dfdl_arpt.setFrlt(linkman2.elementText("FRLT"));
-                            dflt_dfdl_arpt.setApat(linkman2.elementText("APAT"));
+                    Iterator<Element> iter2 = element1.elementIterator("AIRL");
+                    while (iter2.hasNext()) {
+                        Element linkman2 = iter2.next();
+                        Iterator<Element> iter7 = element3.elementIterator("ARPT");
+//                        System.out.println(linkman2);
+                        while (iter7.hasNext()) {
+                            Element linkman3 = iter7.next();
+
+                            dflt_dfdl_arpt.setApno(linkman3.elementText("APNO"));
+                            dflt_dfdl_arpt.setApcd(linkman3.elementText("APCD"));
+                            dflt_dfdl_arpt.setFptt(linkman3.elementText("FPTT"));
+                            dflt_dfdl_arpt.setFett(linkman3.elementText("FETT"));
+                            dflt_dfdl_arpt.setFrtt(linkman3.elementText("FRTT"));
+                            dflt_dfdl_arpt.setFplt(linkman3.elementText("FPLT"));
+                            dflt_dfdl_arpt.setFelt(linkman3.elementText("FELT"));
+                            dflt_dfdl_arpt.setFrlt(linkman3.elementText("FRLT"));
+                            dflt_dfdl_arpt.setApat(linkman3.elementText("APAT"));
 
                             System.out.println(dflt_dfdl_arpt);
                             dflt_dfdl_arptRepository.saveDflt(
@@ -1433,16 +1441,14 @@ class CommonListenerApplicationTests {
                                     dflt_dfdl_arpt.getFrtt(),dflt_dfdl_arpt.getFplt(),
                                     dflt_dfdl_arpt.getFelt(),dflt_dfdl_arpt.getFrlt(),
                                     dflt_dfdl_arpt.getApat(),dflt.getFlid());
-                        } else {
-                            continue;
                         }
                     }
+                    break;
                 }
-                break;
             }
+
         }
     }
-
 
 
     /**
