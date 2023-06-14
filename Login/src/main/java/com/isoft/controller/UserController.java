@@ -82,7 +82,7 @@ public class UserController {
     }
 
 
-//    @PostMapping("/toLogin")
+//    @GetMapping("/toLoginU")
 //    @ResponseBody
 //    public Map<String, Object> login(@RequestParam("username") String username, @RequestParam("password") String password) {
 //        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -91,6 +91,7 @@ public class UserController {
 //        Map<String, Object> map = new HashMap<>();
 //        List<Customer> all = customerService.findAll();
 //        for (Customer customer : all) {
+//            System.out.println(customer);
 //            if (username.equals(customer.getUsername()) && hashedPassword.equals(customer.getPassword())) {
 //                map.put("code", 200);
 //                map.put("message", "登录成功");

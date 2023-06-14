@@ -115,7 +115,7 @@
                             <div class="layui-form-item">
 <!--                                <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="demo-login">登录-->
 <!--                                </button>-->
-                                <input type="submit" class="layui-btn layui-btn-fluid" lay-filter="demo-login"/>登录
+                                <input type="submit" value="登录" class="layui-btn layui-btn-fluid" lay-filter="demo-login"/>
                             </div>
                             <div class="layui-form-item demo-login-other">
                                 <label>第三方账号登录</label>
@@ -138,8 +138,9 @@
 <script src="/layui/layui.js" type="text/javascript"></script>
 
 <script>
-    layui.use(['form'], function() {
+    layui.use(function() {
         var form = layui.form;
+        var layer = layui.layer;
         form.verify({
             captcha: function(value, item) {
                 var captchaImg = document.querySelector(".captcha-img");
@@ -154,47 +155,46 @@
                 }
             },
             password : [ /^[\S]{4,12}$/, '密码必须4到12位，且不能出现空格' ]
-        });
-        form.verify({
-
-        });
-
-        form.on('submit(demo-login)', function(data) {
-            // 表单提交时调用验证码验证规则
-            var result = form.verify({
-                captcha: function(value, item) {
-                    var captchaImg = document.querySelector(".captcha-img");
-                    var captchaCode = captchaImg.getAttribute("data-value");
-                    if (value !== captchaCode) {
-                        return '验证码输入错误！';
-                    }
-                }
-            });
-            if (result) {
-                // 如果验证规则返回了错误信息，将错误信息显示到相应的表单元素下方
-                var elem = $(data.elem);
-                var item = elem.parents('.layui-form-item').first();
-                var error = item.find('.layui-form-mid');
-                if (error.length == 0) {
-                    error = $('<div class="layui-form-mid layui-word-aux"></div>');
-                    item.append(error);
-                }
-                error.html('<span style="color: red;">' + result + '</span>');
-                return false;
-            }
-            // 其他表单校验规则
-            // ...
-
-            // 处理表单提交事件返回值
-            var submitResult = false; // 初始化表单提交结果为false
-            // TODO：在这里处理表单提交事件，设置submitResult为true或者返回一个Promise对象
-            if (submitResult) {
-                return true; // 表单提交
-            } else {
-                return false; // 阻止表单提交
-            }
-        });
-    });
+        });});
+    //     form.on('submit(demo-login)', function(data) {
+    //         // 表单提交时调用验证码验证规则
+    //         form.verify({
+    //             captcha: function(value, item) {
+    //                 var captchaImg = document.querySelector(".captcha-img");
+    //                 var captchaCode = captchaImg.getAttribute("data-value");
+    //                 if (value !== captchaCode) {
+    //                     return '验证码输入错误！';
+    //                 }
+    //             }
+    //         });
+    //         $(data.elem).prop('disabled', true);
+    //         var formData = {
+    //             "username": data.field.username,
+    //             "password": data.field.password
+    //         };
+    //         console.log(formData)
+    //         //提交表单
+    //         console.log(data.form.action)
+    //         $.get("/toLoginU", formData, function (result) {
+    //             // 启用表单按钮
+    //             $(data.elem).prop('disabled', false);
+    //             console.log(result.message)
+    //             console.log(result.code)
+    //
+    //             if (result.code === 200) {
+    //                 // 登录成功，跳转到首页
+    //                 layer.alert(result.message, {icon: 1}, function () {
+    //                     location.href = "/";
+    //                 });
+    //             } else {
+    //                 // 登录失败，弹出错误提示
+    //                 layer.alert(result.message, {icon: 2});
+    //             }
+    //         })
+    //
+    //         return false;
+    //     });
+    // });
 </script>
 </body>
 
