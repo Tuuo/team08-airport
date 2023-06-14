@@ -135,7 +135,10 @@ public void onFileCreate(File file) {
             xmlAnaly.getSTLS(file.getPath());
             System.out.println("DFME-STLS-"+file.getPath()+"已经插入了");
             break;
-
+        case "DFOE-DFIE":
+            xmlAnaly.getDFIE(file.getPath());
+            System.out.println("DFOE-DFIE-"+file.getPath()+"已经插入了");
+            break;
     }
         System.out.println("创建文件");
 }
