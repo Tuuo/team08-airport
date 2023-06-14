@@ -24,6 +24,6 @@ public interface Dflt_DfieRepository  extends JpaRepository<Dflt_Dfie, Integer> 
                               String pokt,String mpok,String apot,String dett,String drtt,String delt,
                               String drlt,String vip,String sflg,String past,String gtls,String blls,
                               String fces,String fcee,String fcrs, String fcre,String mces,String mcee,
-                              String mcrs,String cre,String fcdp,String mcdp,String chls,String stls,
+                              String mcrs,String mcre,String fcdp,String mcdp,String chls,String stls,
                               String nmcd,String jmcd,String fldt,String lldt,String cont,String prox);
 }
