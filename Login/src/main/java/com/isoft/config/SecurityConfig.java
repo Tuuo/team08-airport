@@ -44,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //没有权限默认到登录页面
         http.formLogin().loginPage("/toLogin").loginProcessingUrl("/toLogin").permitAll().usernameParameter("username")
                 .passwordParameter("password").defaultSuccessUrl("/")//.failureHandler(authenticationFailureHandler)
-                .failureForwardUrl("/toLogin");
+                .failureForwardUrl("/toLogin?error");
 
         //自定义用户登出
         http.logout();

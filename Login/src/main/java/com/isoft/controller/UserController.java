@@ -82,26 +82,27 @@ public class UserController {
     }
 
 
-    @PostMapping("/toLogin")
-    @ResponseBody
-    public Map<String, Object> login(@RequestParam("username") String username, @RequestParam("password") String password) {
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        // 将明文密码散列加密成 bcrypt 哈希值
-        String hashedPassword = encoder.encode(password);
-        Map<String, Object> map = new HashMap<>();
-        List<Customer> all = customerService.findAll();
-        for (Customer customer : all) {
-            if (username.equals(customer.getUsername()) && hashedPassword.equals(customer.getPassword())) {
-                map.put("code", 200);
-                map.put("message", "登录成功");
-                System.out.println("登录成功");
-                return map;
-            }
-        }
-        System.out.println("用户名密码错误");
-        map.put("code", -1);
-        map.put("message", "用户名密码错误!");
-        return map;
-    }
+//    @GetMapping("/toLoginU")
+//    @ResponseBody
+//    public Map<String, Object> login(@RequestParam("username") String username, @RequestParam("password") String password) {
+//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//        // 将明文密码散列加密成 bcrypt 哈希值
+//        String hashedPassword = encoder.encode(password);
+//        Map<String, Object> map = new HashMap<>();
+//        List<Customer> all = customerService.findAll();
+//        for (Customer customer : all) {
+//            System.out.println(customer);
+//            if (username.equals(customer.getUsername()) && hashedPassword.equals(customer.getPassword())) {
+//                map.put("code", 200);
+//                map.put("message", "登录成功");
+//                System.out.println("登录成功");
+//                return map;
+//            }
+//        }
+//        System.out.println("用户名密码错误");
+//        map.put("code", -1);
+//        map.put("message", "用户名密码错误!");
+//        return map;
+//    }
 
 }
