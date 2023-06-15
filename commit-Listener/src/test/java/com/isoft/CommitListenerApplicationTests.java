@@ -19,7 +19,7 @@ import java.sql.*;
 import java.util.Iterator;
 import java.util.List;
 
-
+//读取指定路径下的XML文件，解析其中的"META"和"APOT"元素，并将解析结果存储到数据库中
 @SpringBootTest
 class CommonListenerApplicationTests {
     @Autowired
@@ -114,20 +114,33 @@ class CommonListenerApplicationTests {
      * @throws SQLException
      * @throws FileNotFoundException
      */
+
+
     @Test
     void testA() throws ClassNotFoundException, SQLException, FileNotFoundException {
+
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("E://Temp//wu//BASE-APUE-20170606231907.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
-//        System.out.println(root);
+
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -150,7 +163,10 @@ class CommonListenerApplicationTests {
 
         metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
                 meta.getDdtm(), meta.getType(), meta.getStyp());
+
+
         //APOT
+        //查找并解析名为"APOT"的子元素，将解析结果存储到Apot对象中
         Element element2 = root.element("APOT");
         Apot apot = new Apot();
         while (iter.hasNext()) {
@@ -177,18 +193,29 @@ class CommonListenerApplicationTests {
 
     @Test
     void testCFUE() throws ClassNotFoundException, SQLException, FileNotFoundException {
+
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("E://Temp//wu//BASE-CFUE-20170606113521.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
-//        System.out.println(root);
+
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -213,7 +240,9 @@ class CommonListenerApplicationTests {
 
         metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
                 meta.getDdtm(), meta.getType(), meta.getStyp());
-        //APOT
+
+        //CRFT
+        //查找并解析名为"CRFT"的子元素，将解析结果存储到Crft对象中
         Element element2 = root.element("CRFT");
         Crft crft = new Crft();
         while (iter.hasNext()) {
@@ -255,18 +284,29 @@ class CommonListenerApplicationTests {
 
     @Test
     void testAFID() throws ClassNotFoundException, SQLException, FileNotFoundException {
+
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("E://Temp//wu//DFME-AFID-20170606201129.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
+
+        //获取XML文档的根元素
         Element root = doc.getRootElement();    //取得根元素
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
-//        System.out.println(root);
+
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -291,7 +331,9 @@ class CommonListenerApplicationTests {
 
         metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
                 meta.getDdtm(), meta.getType(), meta.getStyp());
-        //APOT
+
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         AFID_Dflt afid_dflt = new AFID_Dflt();
         while (iter.hasNext()) {
@@ -316,18 +358,30 @@ class CommonListenerApplicationTests {
 
     @Test
     void testAIRL() throws ClassNotFoundException, SQLException, FileNotFoundException {
+
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("E://Temp//wu//DFME-AIRL-20170606192916.xml");
+
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
-//        System.out.println(root);
+
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -352,7 +406,9 @@ class CommonListenerApplicationTests {
 
         metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
                 meta.getDdtm(), meta.getType(), meta.getStyp());
-        //APOT
+
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         Element element3 = element2.element("AIRL");
         List<Element> arpts = element3.elements("ARPT");
@@ -404,18 +460,29 @@ class CommonListenerApplicationTests {
 
     @Test
     void testARRE() throws ClassNotFoundException, SQLException, FileNotFoundException {
+
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("E://Temp//wu//DFME-ARRE-20170606234401.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
-//        System.out.println(root);
+
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -440,7 +507,9 @@ class CommonListenerApplicationTests {
 
         metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
                 meta.getDdtm(), meta.getType(), meta.getStyp());
-        //APOT
+
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         ARRE_Dflt arre_dflt = new ARRE_Dflt();
         while (iter.hasNext()) {
@@ -472,19 +541,29 @@ class CommonListenerApplicationTests {
     @Test
     void testBLLS() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("E://Temp//wu//DFME-BLLS-20170606234007.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
 
 
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -511,7 +590,8 @@ class CommonListenerApplicationTests {
                 meta.getDdtm(), meta.getType(), meta.getStyp());
 
 
-        //Dflt
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         Element element3 = element2.element("BLLS");
         List<Element> elements = element3.elements("BELT");
@@ -578,19 +658,29 @@ class CommonListenerApplicationTests {
     @Test
     void testBORE() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("D://Temp//plane//DFME-BORE-20170601055648.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
 
 
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -617,7 +707,8 @@ class CommonListenerApplicationTests {
                 meta.getDdtm(), meta.getType(), meta.getStyp());
 
 
-        //Dflt
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         Dflt_Bore dflt = new Dflt_Bore();
         while (iter.hasNext()) {
@@ -649,19 +740,29 @@ class CommonListenerApplicationTests {
     @Test
     void testCANE() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("D://Temp//plane//DFME-CANE-20170601105143.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
 
 
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -688,7 +789,8 @@ class CommonListenerApplicationTests {
                 meta.getDdtm(), meta.getType(), meta.getStyp());
 
 
-        //Dflt
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         Dflt_Cane dflt = new Dflt_Cane();
         while (iter.hasNext()) {
@@ -722,19 +824,29 @@ class CommonListenerApplicationTests {
     @Test
     void testCFCE() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("D://Temp//plane//DFME-CFCE-20170601061944.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
 
 
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -761,7 +873,8 @@ class CommonListenerApplicationTests {
                 meta.getDdtm(), meta.getType(), meta.getStyp());
 
 
-        //Dflt
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         Dflt_Cfce dflt = new Dflt_Cfce();
         while (iter.hasNext()) {
@@ -787,19 +900,29 @@ class CommonListenerApplicationTests {
     @Test
     void testCKIE() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("D://Temp//plane//DFME-CKIE-20170601044511.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
 
 
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -825,8 +948,8 @@ class CommonListenerApplicationTests {
         metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
                 meta.getDdtm(), meta.getType(), meta.getStyp());
 
-
-        //Dflt
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         Dflt_Ckie dflt = new Dflt_Ckie();
         while (iter.hasNext()) {
@@ -858,19 +981,29 @@ class CommonListenerApplicationTests {
     @Test
     void testCKLS() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("E://Temp//wu//DFME-CKLS-20170606221903.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
 
 
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -892,13 +1025,12 @@ class CommonListenerApplicationTests {
                 continue;
             }
         }
-//
         metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
                 meta.getDdtm(), meta.getType(), meta.getStyp());
 
 
-        //Dflt
-        //Dflt
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         Element element3 = element2.element("CKLS");
         List<Element> elementList = element2.elements();
@@ -968,10 +1100,7 @@ class CommonListenerApplicationTests {
                         } else {
                             continue;
                         }
-
                     }
-
-
                 }
                 break;
             }
@@ -981,19 +1110,29 @@ class CommonListenerApplicationTests {
     @Test
     void testCKOE() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("D://Temp//plane//DFME-CKOE-20170601060011.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
 
 
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -1020,7 +1159,8 @@ class CommonListenerApplicationTests {
                 meta.getDdtm(), meta.getType(), meta.getStyp());
 
 
-        //Dflt
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         Dflt_Ckoe dflt = new Dflt_Ckoe();
         while (iter.hasNext()) {
@@ -1052,19 +1192,29 @@ class CommonListenerApplicationTests {
     @Test
     void testDFIE() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("E://Temp//DFOE-DFIE-20170606201203.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
 
 
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -1090,7 +1240,8 @@ class CommonListenerApplicationTests {
         metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
                 meta.getDdtm(), meta.getType(), meta.getStyp());
 
-        //Dflt
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         Element element3 = element2.element("AIRL");
         Element element4 = element2.element("CKLS");
@@ -1240,19 +1391,29 @@ class CommonListenerApplicationTests {
     @Test
     void testDFDL() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("E://Temp//DFOE-DFDL-20170606175234.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
 
 
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -1278,13 +1439,13 @@ class CommonListenerApplicationTests {
         metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
                 meta.getDdtm(), meta.getType(), meta.getStyp());
 
-        //Dflt
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         List<Element> elementList = root.elements("DFLT");
 
         Element element3 = element2.element("AIRL");
         List<Element> elements = element3.elements("ARPT");
-//        Iterator<Element> iter2 = element3.elementIterator();
 
         Element element4 = element2.element("CKLS");
 
@@ -1457,19 +1618,29 @@ class CommonListenerApplicationTests {
     @Test
     void testDEPE() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("C://temp//DEPE//01//DFME-DEPE-20170601001712.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
 
 
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -1496,7 +1667,8 @@ class CommonListenerApplicationTests {
                 meta.getDdtm(), meta.getType(), meta.getStyp());
 
 
-        //Dflt
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         Dflt_Depe dflt = new Dflt_Depe();
         while (iter.hasNext()) {
@@ -1524,23 +1696,32 @@ class CommonListenerApplicationTests {
                 dflt.getMist(), dflt.getFrtt());
     }
 
-    //赵
     @Test
     void testDLYE() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("C://temp//DLYE//01//DFME-DLYE-20170601065608.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
 
 
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -1567,7 +1748,8 @@ class CommonListenerApplicationTests {
                 meta.getDdtm(), meta.getType(), meta.getStyp());
 
 
-        //Dflt
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         Dflt_Dlye dflt = new Dflt_Dlye();
         while (iter.hasNext()) {
@@ -1602,19 +1784,28 @@ class CommonListenerApplicationTests {
     @Test
     void testFETT() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("C://temp//FETT//01//DFME-FETT-20170601010600.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
 
-
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -1640,8 +1831,8 @@ class CommonListenerApplicationTests {
         metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
                 meta.getDdtm(), meta.getType(), meta.getStyp());
 
-
-        //Dflt
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         Dflt_Fett dflt = new Dflt_Fett();
         while (iter.hasNext()) {
@@ -1667,19 +1858,29 @@ class CommonListenerApplicationTests {
     @Test
     void testFPTT() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("C://temp//FPTT//01//DFME-FPTT-20170601181725.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
 
-
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -1705,8 +1906,8 @@ class CommonListenerApplicationTests {
         metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
                 meta.getDdtm(), meta.getType(), meta.getStyp());
 
-
-        //Dflt
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         Dflt_Fptt dflt = new Dflt_Fptt();
         while (iter.hasNext()) {
@@ -1732,19 +1933,29 @@ class CommonListenerApplicationTests {
     @Test
     void testFRTT() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("C://temp//FRTT//01//DFME-FRTT-20170601000137.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
 
 
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -1770,8 +1981,8 @@ class CommonListenerApplicationTests {
         metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
                 meta.getDdtm(), meta.getType(), meta.getStyp());
 
-
-        //Dflt
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         Dflt_Frtt dflt = new Dflt_Frtt();
         while (iter.hasNext()) {
@@ -1797,19 +2008,29 @@ class CommonListenerApplicationTests {
     @Test
     void testGTLS() throws ClassNotFoundException, SQLException, FileNotFoundException {
 
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("C://temp//GTLS//01//DFME-GTLS-20170601001716.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
 
 
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -1836,7 +2057,8 @@ class CommonListenerApplicationTests {
                 meta.getDdtm(), meta.getType(), meta.getStyp());
 
 
-        //Dflt
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         Element element3 = element2.element("GTLS");
         List<Element> elements = element3.elements("GATE");
@@ -1902,18 +2124,28 @@ class CommonListenerApplicationTests {
      */
     @Test
     void testLBDE() throws ClassNotFoundException, SQLException, FileNotFoundException {
+
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("D://xinchuang//zhang//DFME-LBDE-20170606161704.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
-//        System.out.println(root);
+
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -1936,7 +2168,9 @@ class CommonListenerApplicationTests {
 
         metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
                 meta.getDdtm(), meta.getType(), meta.getStyp());
-        //LBDE
+
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         DFME_LBDE lbde = new DFME_LBDE();
         while (iter.hasNext()) {
@@ -1966,22 +2200,31 @@ class CommonListenerApplicationTests {
 
     }
 
-    //张
-
     @Test
     void testONRE() throws ClassNotFoundException, SQLException, FileNotFoundException {
+
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("D://xinchuang//zhang//DFME-ONRE-20170606234001.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
-//        System.out.println(root);
+
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -2004,7 +2247,9 @@ class CommonListenerApplicationTests {
 
         metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
                 meta.getDdtm(), meta.getType(), meta.getStyp());
-        //ONRE
+
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         DFME_ONRE onre = new DFME_ONRE();
         while (iter.hasNext()) {
@@ -2036,18 +2281,29 @@ class CommonListenerApplicationTests {
 
     @Test
     void testPOKE() throws ClassNotFoundException, SQLException, FileNotFoundException {
+
+        //创建一个File对象，指定要解析的XML文件的路径。
         File file = new File("D://xinchuang//zhang//DFME-POKE-20170606230025.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
-//        System.out.println(root);
+
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -2070,7 +2326,9 @@ class CommonListenerApplicationTests {
 
         metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
                 meta.getDdtm(), meta.getType(), meta.getStyp());
-        //ONRE
+
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         DFME_POKE poke = new DFME_POKE();
         while (iter.hasNext()) {
@@ -2103,18 +2361,29 @@ class CommonListenerApplicationTests {
 
     @Test
     void testSTLS() throws ClassNotFoundException, SQLException, FileNotFoundException {
+
+        //创建一个File对象，指定要解析的XML文件的路径
         File file = new File("D://xinchuang//zhang//DFME-STLS-20170606234831.xml");
+
+        //创建一个SAXReader对象，用于读取XML文档。
         SAXReader reader = new SAXReader();
+
+        //使用SAXReader读取指定的XML文件，将其解析为一个Document对象。
         Document doc = null;
         try {
             doc = reader.read(file);    //读取文档
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Element root = doc.getRootElement();    //取得根元素
+
+        //获取XML文档的根元素
+        Element root = doc.getRootElement();
+
+        //创建一个迭代器iter，用于遍历根元素的子元素。
         Iterator<Element> iter = root.elementIterator();
-//        System.out.println(root);
+
         //META
+        //查找并解析名为"META"的子元素，将解析结果存储到Meta对象中
         Element element = root.element("META");
         Meta meta = new Meta();
         while (iter.hasNext()) {
@@ -2137,7 +2406,9 @@ class CommonListenerApplicationTests {
 
         metaRepository.saveMeta(meta.getSndr(), meta.getRcvr(), meta.getSeqn(),
                 meta.getDdtm(), meta.getType(), meta.getStyp());
-        //STLS
+
+        //DFLT
+        //查找并解析名为"DFLT"的子元素，将解析结果存储到Dflt对象中
         Element element2 = root.element("DFLT");
         DFME_STLS stls = new DFME_STLS();
         while (iter.hasNext()) {
