@@ -18,12 +18,13 @@ import java.io.FileReader;
 import java.util.Iterator;
 import java.util.List;
 
+//解析特定 XML 文件中指定部分数据的工具类。它通过读取 XML 文件，提取相应的数据，并使用仓库将数据持久化
 
 /**
  * xml解析工具包
  */
-@Transactional
-@Slf4j
+@Transactional  //该类中的方法将在事务中执行
+@Slf4j          //生成日志记录器
 public class XmlAnaly {
 
     private ApotRepository apotRepository = BeanContext.getBean(ApotRepository.class);
@@ -69,6 +70,16 @@ public class XmlAnaly {
 
     private Dflt_DfdlRepository dflt_dfdlRepository = BeanContext.getBean(Dflt_DfdlRepository.class);
 
+
+    /*
+    *   以下用于解析 XML 文件中的 "BASE_APUE" 部分的数据。
+    *   方法参数 path 是 XML 文件的路径。
+    *   方法内部使用 SAXReader 和 Document 对象读取 XML 文件，并获取根元素和子元素。
+    *   首先，从根元素中提取 "META" 部分的数据，并创建一个 Meta 对象，将解析得到的数据设置到 Meta 对象中。
+    *   然后，将 Meta 对象保存到 metaRepository 仓库中。
+    *   接下来，从根元素中提取 "APOT" 部分的数据，并创建一个 Apot 对象，将解析得到的数据设置到 Apot 对象中。
+    *   最后，将 Apot 对象保存到 apotRepository 仓库中。
+    */
 
     /**
      * BASE_APUE

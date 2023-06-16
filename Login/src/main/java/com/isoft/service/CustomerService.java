@@ -23,6 +23,8 @@ public class CustomerService {
 
     //  使用用户名查询用户信息
     public Customer getCustomer(String username){
+
+        //尝试从缓存中获取用户信息，如果缓存中不存在，则从数据库中查询用户信息，并将查询结果存储到缓存中
         Customer customer = null;
         Object obj = redisTemplate.opsForValue().get("customer_" + username);
         if (obj != null){
@@ -35,16 +37,20 @@ public class CustomerService {
         }
         return customer;
     }
+
+    //保存用户信息，接收用户名和密码作为参数，并调用customerRepository的saveUser方法保存用户信息。
     public Integer saveUser(String username,String password){
         customerRepository.saveUser(username, password);
         return 1;
     }
 
+    //查询所有用户，调用customerRepository的findAllUsers方法返回用户列表。
     public List<Customer> findAll(){
         return customerRepository.findAllUsers();
     }
 
-    //使用用户名查询用户权限
+    //通过用户名查询用户权限信息，首先尝试从缓存中获取用户权限信息，
+    // 如果缓存中不存在，则从数据库中查询用户权限信息，并将查询结果存储到缓存中。
     public List<Authority> getCustomerAuthority(String username){
         List<Authority> authorities = null;
         Object obj = redisTemplate.opsForValue().get("authorities_" + username);

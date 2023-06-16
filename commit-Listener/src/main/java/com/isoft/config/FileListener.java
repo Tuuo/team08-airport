@@ -12,22 +12,37 @@ public class FileListener implements FileAlterationListener {
     static XmlAnaly xmlAnaly = new XmlAnaly();
 
 
-
+    /**
+     * 监听器启动时执行的方法
+     * @param fileAlterationObserver 文件变化观察器
+     */
     @Override
     public void onStart(FileAlterationObserver fileAlterationObserver) {
         System.out.println("开始监听");
     }
 
+    /**
+     * 目录创建时执行的方法
+     * @param directory 创建的目录
+     */
     @Override
     public void onDirectoryCreate(File directory) {
         System.out.println("目录[新建]:"+directory.getAbsolutePath());
     }
 
+    /**
+     * 目录修改时执行的方法
+     * @param directory 修改的目录
+     */
     @Override
     public void onDirectoryChange(File directory) {
         System.out.println("目录[修改]:"+directory.getAbsolutePath());
     }
 
+    /**
+     * 目录删除时执行的方法
+     * @param directory 删除的目录
+     */
     @Override
     public void onDirectoryDelete(File directory) {
         System.out.println("目录[删除]:"+directory.getAbsolutePath());
@@ -37,6 +52,15 @@ public class FileListener implements FileAlterationListener {
 //    public void onFileCreate(File file) {
 //        System.out.println("文件[新建]:"+file.getAbsolutePath());
 //    }
+
+    /**
+     * 文件创建时执行的方法
+     * @param file 创建的文件
+     * 这段代码的作用是根据不同的文件名执行不同的操作
+     * 首先提取文件名的前9个字符作为filename。
+     * 然后，根据filename的不同取值，执行相应的操作。
+     * 每个case分支都调用xmlAnaly对象的不同方法，并传递文件路径作为参数，然后打印出已经插入了该文件的消息
+     */
 @Override
 public void onFileCreate(File file) {
 
@@ -146,16 +170,30 @@ public void onFileCreate(File file) {
     }
         System.out.println("创建文件");
 }
+
+    /**
+     * 文件修改时执行的方法
+     * @param file 修改的文件
+     */
     @Override
     public void onFileChange(File file) {
         System.out.println("文件[修改]:"+file.getAbsolutePath());
     }
 
+    /**
+     * 文件删除时执行的方法
+     * @param file 删除的文件
+     */
     @Override
     public void onFileDelete(File file) {
         System.out.println("文件[删除]:"+file.getAbsolutePath());
     }
 
+
+    /**
+     * 监听器停止时执行的方法
+     * @param observer 文件变化观察器
+     */
     @Override
     public void onStop(FileAlterationObserver observer) {
         System.out.println("结束监听");
