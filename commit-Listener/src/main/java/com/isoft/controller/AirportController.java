@@ -25,7 +25,7 @@ public class AirportController {
     public List<Object> getAPUE(){
         List<Object> apue = new ArrayList<>();
         List<Apot> apot = apotRepository.findAll();
-        List<Meta> meta = metaRepository.findAll();
+        List<Meta> meta = metaRepository.findAPOTMeta();
         System.out.println(apot.size());
         apue.add(meta);
         apue.add(apot);
