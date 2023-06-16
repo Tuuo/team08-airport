@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.Date;
+import java.util.List;
 
 
 public interface MetaRepository extends JpaRepository<Meta, Integer> {
@@ -15,4 +16,6 @@ public interface MetaRepository extends JpaRepository<Meta, Integer> {
     @Query(value = "insert into TEAM08.COMMON_META(sndr,rcvr,seqn,ddtm,type,styp) " +
             "values (?1,?2,?3,?4,?5,?6)", nativeQuery = true)
     public Meta saveMeta(String sndr, String rcvr, Long seqn, String ddtm,String type,String styp);
+    @Query(value = "select * from TEAM08.COMMON_META",nativeQuery = true)
+    public List<Meta> findAll();
 }
