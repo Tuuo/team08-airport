@@ -17,6 +17,22 @@ public interface MetaRepository extends JpaRepository<Meta, Integer> {
             "values (?1,?2,?3,?4,?5,?6)", nativeQuery = true)
     public Meta saveMeta(String sndr, String rcvr, Long seqn, String ddtm,String type,String styp);
     @Query(value = "select * from TEAM08.COMMON_META where styp like 'APUE'",nativeQuery = true)
-    public List<Meta> findAPOTMeta();
+    public List<Meta> findAPUEMeta();
+
+    @Query(value = "select * from TEAM08.COMMON_META where styp like 'CFUE'",nativeQuery = true)
+    public List<Meta> findCFUEMeta();
+    @Query(value = "select * from TEAM08.COMMON_META where styp like 'AFID'",nativeQuery = true)
+    public List<Meta> findAFIDMeta();
+    @Query(value = "select * from TEAM08.COMMON_META where styp like 'AIRL'",nativeQuery = true)
+    public List<Meta> findAIRLMeta();
+    @Query(value = "select * from TEAM08.COMMON_META where styp like 'ARRE'",nativeQuery = true)
+    public List<Meta> findARREMeta();
+
+    @Query(value = "select * from TEAM08.COMMON_META where styp like 'BLLS'",nativeQuery = true)
+    public List<Meta> findBLLSMeta();
+
+
+
+
 
 }

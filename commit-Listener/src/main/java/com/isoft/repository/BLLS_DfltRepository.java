@@ -6,8 +6,12 @@ import com.isoft.entity.BLLS_Dflt;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 public interface BLLS_DfltRepository extends JpaRepository<BLLS_Dflt, Integer> {
     @Query(value = "insert into TEAM08.DFME_BLLS(meta_id,flid,ffid,fide,fatt) " +
             "values (?1,?2,?3,?4,?5)", nativeQuery = true)
     public AIRL_Dflt saveApot(Long metaId, Long flid, String ffid, String fide,String fatt);
+    @Query(value = "select * from TEAM08.DFME_BLLS",nativeQuery = true)
+    public List<BLLS_Dflt> findAll();
 }
