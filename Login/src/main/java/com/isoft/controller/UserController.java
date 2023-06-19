@@ -54,6 +54,10 @@ public class UserController {
         return "views/level3/" + id;
     }
 
+    @RequestMapping("/APUE")
+    public String getAPUE(){
+        return "APUE";
+    }
     @GetMapping("/register")
     public String register() {
         return "register";

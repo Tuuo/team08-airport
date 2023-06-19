@@ -2,7 +2,12 @@ package com.isoft.controller;
 
 import com.isoft.entity.*;
 import com.isoft.repository.*;
+import com.isoft.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/airports")
 public class AirportController {
 
@@ -101,15 +107,14 @@ public class AirportController {
 
 
     @GetMapping("/APUE")
-    public List<Object> getAPUE() {
-        List<Object> apue = new ArrayList<>();
-        List<Apot> apot = apotRepository.findAll();
-        List<Meta> meta = metaRepository.findAPUEMeta();
-        System.out.println(apot.size());
-        apue.add(meta);
-        apue.add(apot);
-        return apue;
-
+    public LayUiResult getAPUE(PageVo pageVo) {
+        System.out.println(pageVo);
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<Apot> apuePage = apotRepository.findAll(pageable);
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(apuePage.getTotalElements(), apuePage.getContent());
     }
 
     @GetMapping("/CFUE")

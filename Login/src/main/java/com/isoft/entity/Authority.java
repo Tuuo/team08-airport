@@ -13,6 +13,7 @@ import java.io.Serializable;
 @Entity(name = "t_authority")
 @Data
 public class Authority  implements Serializable {
+    private static final long serialVersionUID = -2708487789560050023L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

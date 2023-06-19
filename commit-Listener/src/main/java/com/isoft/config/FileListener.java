@@ -18,7 +18,7 @@ public class FileListener implements FileAlterationListener {
      */
     @Override
     public void onStart(FileAlterationObserver fileAlterationObserver) {
-        System.out.println("开始监听");
+//        System.out.println("开始监听");
     }
 
     /**
@@ -196,6 +196,6 @@ public void onFileCreate(File file) {
      */
     @Override
     public void onStop(FileAlterationObserver observer) {
-        System.out.println("结束监听");
+//        System.out.println("结束监听");
     }
 }
