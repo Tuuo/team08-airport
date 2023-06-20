@@ -1,5 +1,6 @@
 package com.isoft.vo;
 
+import com.isoft.entity.Apot;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
