@@ -3,8 +3,11 @@ package com.isoft.repository;
 import com.isoft.entity.AFID_Dflt;
 import com.isoft.entity.AIRL_Arpt;
 import com.isoft.entity.AIRL_Dflt;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -15,6 +18,10 @@ public interface AIRL_ArptRepository extends JpaRepository<AIRL_Arpt,Integer> {
                               String fplt,String felt,String frlt,String apat,Long airlId);
 
 
-    @Query(value = "select * from DFME_AIRL_ARPT",nativeQuery = true)
-    public List<AIRL_Arpt> findAll();
+    @Query(value = "select daa.id,da.meta_id,daa.apno,daa.apcd,daa.fptt,daa.fett,daa.FRTT,daa.FPLT,daa.FELT,daa.FRLT,daa.APAT,daa.AIRL_ID from TEAM08.DFME_AIRL_ARPT daa inner join TEAM08.DFME_AIRL da on(da.flid=daa.airl_id)", nativeQuery = true)
+    public Page<AIRL_Arpt> findAll(Pageable pageable);
+
+    @Query(value = "select daa.id,da.meta_id,daa.apno,daa.apcd,daa.fptt,daa.fett,daa.FRTT,daa.FPLT,daa.FELT,daa.FRLT,daa.APAT,daa.AIRL_ID from TEAM08.DFME_AIRL_ARPT daa inner join TEAM08.DFME_AIRL da on(da.flid=daa.airl_id)  where apno like %:apno% and apcd like %:apcd%", countQuery = "select count(*) from TEAM08.DFME_AIRL_ARPT  where apno like %:apno% and apcd like %:apcd%", nativeQuery = true)
+    public Page<AIRL_Arpt> findAllByCodeAndCnnmContaining(@Param("apno") String apno, @Param("apcd") String apcd, Pageable pageable);
+
 }

@@ -54,10 +54,32 @@ public class UserController {
         return "views/level3/" + id;
     }
 
+    /**
+     * 查询页面
+     * @return
+     */
     @RequestMapping("/APUE")
     public String getAPUE(){
         return "APUE";
     }
+
+    @RequestMapping("/CFUE")
+    public String getCFUE(){
+        return "CFUE";
+    }
+    @RequestMapping("/AFID")
+    public String getAFID(){
+        return "AFID";
+    }
+    @RequestMapping("/AIRL")
+    public String getAIRL(){
+        return "AIRL";
+    }
+
+    /**
+     * 注册
+     * @return
+     */
     @GetMapping("/register")
     public String register() {
         return "register";
