@@ -17,7 +17,7 @@ public interface AFID_DfltRepository extends JpaRepository<AFID_Dflt, Integer> {
     @Query(value = "select * from TEAM08.DFME_AFID ", nativeQuery = true)
     public Page<AFID_Dflt> findAll(Pageable pageable);
 
-    @Query(value = "select * from TEAM08.DFME_AFID where flid like %:flid% and fide like %:fide%", countQuery = "select count(*) from TEAM08.BASE_APUE where flid like %:flid% and fide like %:fide%", nativeQuery = true)
+    @Query(value = "select * from TEAM08.DFME_AFID where flid like %:flid% and fide like %:fide%", countQuery = "select count(*) from TEAM08.DFME_AFID where flid like %:flid% and fide like %:fide%", nativeQuery = true)
     public Page<AFID_Dflt> findAllByCodeAndCnnmContaining(@Param("flid") String flid, @Param("fide") String fide, Pageable pageable);
 
 

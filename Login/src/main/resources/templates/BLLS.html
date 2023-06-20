@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>航班衔接变更消息</title>
+    <title>航班行李提取转盘动态信息更新</title>
     <link rel="stylesheet" href="/layui/css/layui.css"/>
     <style>
         .layui-form-label {
@@ -59,14 +59,14 @@
         <div class="layui-form-item">
             <div class="layui-inline">
 
-                <label class="layui-form-label">航班编号</label>
+                <label class="layui-form-label">航班序号</label>
                 <div class="layui-input-inline">
-                    <input id="flid" type="text" name="flid" lay-verify="title" autocomplete="off"
+                    <input id="apno" type="text" name="apno" lay-verify="title" autocomplete="off"
                            placeholder="请输入编号" class="layui-input">
                 </div>
-                <label class="layui-form-label">航班标识</label>
+                <label class="layui-form-label">三字码</label>
                 <div class="layui-input-inline">
-                    <input id="fide" type="text" name="fide" lay-verify="title" autocomplete="off"
+                    <input id="apcd" type="text" name="apcd" lay-verify="title" autocomplete="off"
                            placeholder="请输入名称" class="layui-input">
                 </div>
             </div>
@@ -113,15 +113,22 @@
         var tableInfo = table.render({
             elem: "#newsTable",
             toolbar: "#tableBar",
-            url: "http://localhost:8081/airports/AFID",
+            url: "http://localhost:8081/airports/BLLS",
             cols: [[
                 {checkbox: true,fixed: "left", width: 50},
-                {field: "id", title: "编号",width: 120},
+                {field: "belt_id", title: "编号",width: 120},
                 {field: "meta_id", title: "消息序号"},
-                {field: "flid", title: "航班编号"},
-                {field: "ffid", title: "航班标识"},
-                {field: "fide", title: "详细航班标识"},
-                {field: "afid", title: "关联航班"}
+                {field: "btno", title: "行李提取序号"},
+                {field: "id", title: "行李提取转盘唯一标识"},
+                {field: "code", title: "行李提取转盘编号"},
+                {field: "btat", title: "机场属性"},
+                {field: "estr", title: "预计开始使用时间"},
+                {field: "eend", title: "预计结束使用时间"},
+                {field: "rstr", title: "实际开始使用时间"},
+                {field: "rend", title: "实际结束使用时间"},
+                {field: "btsc", title: "航站楼编号"},
+                {field: "blls_id", title: "航班编号"},
+
             ]],
             dataType: "json",
             id: 'test',

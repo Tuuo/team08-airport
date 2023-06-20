@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>航班衔接变更消息</title>
+    <title>航班到达本站消息</title>
     <link rel="stylesheet" href="/layui/css/layui.css"/>
     <style>
         .layui-form-label {
@@ -113,7 +113,7 @@
         var tableInfo = table.render({
             elem: "#newsTable",
             toolbar: "#tableBar",
-            url: "http://localhost:8081/airports/AFID",
+            url: "http://localhost:8081/airports/ARRE",
             cols: [[
                 {checkbox: true,fixed: "left", width: 50},
                 {field: "id", title: "编号",width: 120},
@@ -121,7 +121,12 @@
                 {field: "flid", title: "航班编号"},
                 {field: "ffid", title: "航班标识"},
                 {field: "fide", title: "详细航班标识"},
-                {field: "afid", title: "关联航班"}
+                {field: "fatt", title: "机场属性"},
+                {field: "stat", title: "航班发布状态"},
+                {field: "ista", title: "航班状态"},
+                {field: "frlt", title: "实际到达时间"},
+                {field: "msta", title: "航班发布状态"},
+                {field: "mist", title: "内部航班状态"},
             ]],
             dataType: "json",
             id: 'test',

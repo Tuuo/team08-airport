@@ -1,10 +1,14 @@
 package com.isoft.repository;
 
+import com.isoft.entity.AIRL_Arpt;
 import com.isoft.entity.AIRL_Dflt;
 import com.isoft.entity.BLLS_BELT;
 import com.isoft.entity.BLLS_Dflt;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -14,6 +18,10 @@ public interface BLLS_BeltRepository extends JpaRepository<BLLS_BELT, Integer> {
     public AIRL_Dflt saveApot(Integer btno,Long id,String code,String btat,String estr,String eend,String rstr,
     String rend,String btsc,Long bllsId);
 
-    @Query(value = "select * from TEAM08.DFME_BLLS_BELT",nativeQuery = true)
-    public List<BLLS_BELT> findAll();
+    @Query(value = "select dbb.belt_id,db.meta_id,dbb.btno,dbb.id,dbb.code,dbb.btat,dbb.estr,dbb.eend,dbb.rstr,dbb.rend,dbb.btsc,dbb.blls_id from TEAM08.DFME_BLLS_BELT dbb inner join TEAM08.DFME_BLLS db on(db.flid=dbb.blls_id)", nativeQuery = true)
+    public Page<BLLS_BELT> findAll(Pageable pageable);
+
+    @Query(value = "select dbb.belt_id,db.meta_id,dbb.btno,dbb.id,dbb.code,dbb.btat,dbb.estr,dbb.eend,dbb.rstr,dbb.rend,dbb.btsc,dbb.blls_id from TEAM08.DFME_BLLS_BELT dbb inner join TEAM08.DFME_BLLS db on(db.flid=dbb.blls_id)  where btno like %:btno% and id like %:id%", countQuery = "select count(*) from TEAM08.DFME_BLLS_BELT  where btno like %:btno% and id like %:id%", nativeQuery = true)
+    public Page<BLLS_BELT> findAllByCodeAndCnnmContaining(@Param("btno") String btno, @Param("id") String id, Pageable pageable);
+
 }

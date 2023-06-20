@@ -75,6 +75,14 @@ public class UserController {
     public String getAIRL(){
         return "AIRL";
     }
+    @RequestMapping("/ARRE")
+    public String getARRE(){
+        return "ARRE";
+    }
+    @RequestMapping("/BLLS")
+    public String getBLLS(){
+        return "BLLS";
+    }
 
     /**
      * 注册

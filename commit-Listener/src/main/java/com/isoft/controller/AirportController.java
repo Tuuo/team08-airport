@@ -168,25 +168,35 @@ public LayUiResult getAPUE(PageVo pageVo, @RequestParam(required = false) String
     }
 
     @GetMapping("/ARRE")
-    public List<Object> getARRE() {
-        List<Object> list = new ArrayList<>();
-        List<ARRE_Dflt> arre_dflts = arre_dfltRepository.findAll();
-        List<Meta> meta = metaRepository.findARREMeta();
-        list.add(meta);
-        list.add(arre_dflts);
-        return list;
+    public LayUiResult getARRE(PageVo pageVo, @RequestParam(required = false) String apno, @RequestParam(required = false) String apcd) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<ARRE_Dflt> arre_dfltPage = null;
+        if (StringUtils.isNoneBlank(apno) && StringUtils.isNoneBlank(apcd)) {
+            arre_dfltPage = arre_dfltRepository.findAllByCodeAndCnnmContaining(apno, apcd, pageable);
+        } else {
+            arre_dfltPage = arre_dfltRepository.findAll(pageable);
+        }
+        System.out.println(arre_dfltPage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(arre_dfltPage.getTotalElements(), arre_dfltPage.getContent());
     }
 
     @GetMapping("/BLLS")
-    public List<Object> getBLLS() {
-        List<Object> list = new ArrayList<>();
-        List<BLLS_Dflt> blls_dflts = blls_dfltRepository.findAll();
-        List<BLLS_BELT> blls_belts = blls_beltRepository.findAll();
-        List<Meta> meta = metaRepository.findARREMeta();
-        list.add(meta);
-        list.add(blls_dflts);
-        list.add(blls_belts);
-        return list;
+    public LayUiResult getBLLS(PageVo pageVo, @RequestParam(required = false) String btno, @RequestParam(required = false) String id) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<BLLS_BELT> blls_beltPage = null;
+        if (StringUtils.isNoneBlank(btno) && StringUtils.isNoneBlank(id)) {
+            blls_beltPage = blls_beltRepository.findAllByCodeAndCnnmContaining(btno, id, pageable);
+        } else {
+            blls_beltPage = blls_beltRepository.findAll(pageable);
+        }
+        System.out.println(blls_beltPage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(blls_beltPage.getTotalElements(), blls_beltPage.getContent());
     }
 
 }
