@@ -83,6 +83,63 @@ public class UserController {
     public String getBLLS(){
         return "BLLS";
     }
+    //l
+    @RequestMapping("/BORE")
+    public String getBORE(){
+        return "BORE";
+    }
+    @RequestMapping("/CANE")
+    public String getCANE(){
+        return "CANE";
+    }
+    @RequestMapping("/CFCE")
+    public String getCFCE(){
+        return "CFCE";
+    }
+    @RequestMapping("/CKIE")
+    public String getCKIE(){
+        return "CKIE";
+    }
+    @RequestMapping("/CKOE")
+    public String getCKOE(){
+        return "CKOE";
+    }
+
+    //z
+    @RequestMapping("/DEPE")
+    public String getDEPE(){
+        return "DEPE";
+    }
+    @RequestMapping("/DLYE")
+    public String getDLYE(){
+        return "DLYE";
+    }
+    @RequestMapping("/FETT")
+    public String getFETT(){
+        return "FETT";
+    }
+    @RequestMapping("/FPTT")
+    public String getFPTT(){
+        return "FPTT";
+    }
+    @RequestMapping("/FRTT")
+    public String getFRTT(){
+        return "FRTT";
+    }
+
+
+    //r
+    @RequestMapping("/LBDE")
+    public String getLBDE(){ return "LBDE"; }
+    @RequestMapping("/ONRE")
+    public String getONRE(){
+        return "ONRE";
+    }
+    @RequestMapping("/POKE")
+    public String getPOKE(){
+        return "POKE";
+    }
+
 
     /**
      * 注册

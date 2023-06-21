@@ -199,4 +199,224 @@ public LayUiResult getAPUE(PageVo pageVo, @RequestParam(required = false) String
         return new LayUiResult(blls_beltPage.getTotalElements(), blls_beltPage.getContent());
     }
 
+
+
+
+    //L
+
+
+
+
+    @GetMapping("/BORE")
+    public LayUiResult getBORE(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<Dflt_Bore> dflt_borePage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dflt_borePage = dflt_boreRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dflt_borePage = dflt_boreRepository.findAll(pageable);
+        }
+        System.out.println(dflt_borePage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dflt_borePage.getTotalElements(), dflt_borePage.getContent());
+    }
+
+
+    @GetMapping("/CANE")
+    public LayUiResult getCANE(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<Dflt_Cane> dflt_canePage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dflt_canePage = dflt_caneRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dflt_canePage = dflt_caneRepository.findAll(pageable);
+        }
+        System.out.println(dflt_canePage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dflt_canePage.getTotalElements(), dflt_canePage.getContent());
+    }
+
+    @GetMapping("/CFCE")
+    public LayUiResult getCFCE(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<Dflt_Cfce> dflt_cfcePage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dflt_cfcePage = dflt_cfceRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dflt_cfcePage = dflt_cfceRepository.findAll(pageable);
+        }
+        System.out.println(dflt_cfcePage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dflt_cfcePage.getTotalElements(), dflt_cfcePage.getContent());
+    }
+
+    @GetMapping("/CKIE")
+    public LayUiResult getCKIE(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<Dflt_Ckie> dflt_ckiePage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dflt_ckiePage = dflt_ckieRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dflt_ckiePage = dflt_ckieRepository.findAll(pageable);
+        }
+        System.out.println(dflt_ckiePage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dflt_ckiePage.getTotalElements(), dflt_ckiePage.getContent());
+    }
+
+    @GetMapping("/CKOE")
+    public LayUiResult getCKOE(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<Dflt_Ckoe> dflt_ckoePage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dflt_ckoePage = dflt_ckoeRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dflt_ckoePage = dflt_ckoeRepository.findAll(pageable);
+        }
+        System.out.println(dflt_ckoePage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dflt_ckoePage.getTotalElements(), dflt_ckoePage.getContent());
+    }
+
+    //z
+    @GetMapping("/DEPE")
+    public LayUiResult getDEPE(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<Dflt_Depe> dflt_depePage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dflt_depePage = dflt_depeRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dflt_depePage = dflt_depeRepository.findAll(pageable);
+        }
+        System.out.println(dflt_depePage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dflt_depePage.getTotalElements(), dflt_depePage.getContent());
+    }
+
+    @GetMapping("/DLYE")
+    public LayUiResult getDLYE(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<Dflt_Dlye> dflt_dlyePage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dflt_dlyePage = dflt_dlyeRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dflt_dlyePage = dflt_dlyeRepository.findAll(pageable);
+        }
+        System.out.println(dflt_dlyePage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dflt_dlyePage.getTotalElements(), dflt_dlyePage.getContent());
+    }
+
+    @GetMapping("/FETT")
+    public LayUiResult getFETT(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<Dflt_Fett> dflt_fettPage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dflt_fettPage = dflt_fettRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dflt_fettPage = dflt_fettRepository.findAll(pageable);
+        }
+        System.out.println(dflt_fettPage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dflt_fettPage.getTotalElements(), dflt_fettPage.getContent());
+    }
+
+    @GetMapping("/FPTT")
+    public LayUiResult getFPTT(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<Dflt_Fptt> dflt_fpttPage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dflt_fpttPage = dflt_fpttRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dflt_fpttPage = dflt_fpttRepository.findAll(pageable);
+        }
+        System.out.println(dflt_fpttPage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dflt_fpttPage.getTotalElements(), dflt_fpttPage.getContent());
+    }
+
+    @GetMapping("/FRTT")
+    public LayUiResult getFRTT(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<Dflt_Frtt> dflt_frttPage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dflt_frttPage = dflt_frttRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dflt_frttPage = dflt_frttRepository.findAll(pageable);
+        }
+        System.out.println(dflt_frttPage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dflt_frttPage.getTotalElements(), dflt_frttPage.getContent());
+    }
+
+
+
+    //r
+    @GetMapping("/LBDE")
+    public LayUiResult getLBDE(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<DFME_LBDE> dfme_lbdePage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dfme_lbdePage = dfme_lbdeRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dfme_lbdePage = dfme_lbdeRepository.findAll(pageable);
+        }
+        System.out.println(dfme_lbdePage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dfme_lbdePage.getTotalElements(), dfme_lbdePage.getContent());
+    }
+
+    @GetMapping("/ONRE")
+    public LayUiResult getONRE(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<DFME_ONRE> dfme_onrePage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dfme_onrePage = onreRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dfme_onrePage = onreRepository.findAll(pageable);
+        }
+        System.out.println(dfme_onrePage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dfme_onrePage.getTotalElements(), dfme_onrePage.getContent());
+    }
+
+    @GetMapping("/POKE")
+    public LayUiResult getPOKE(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<DFME_POKE> dfme_pokePage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dfme_pokePage = pokeRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dfme_pokePage = pokeRepository.findAll(pageable);
+        }
+        System.out.println(dfme_pokePage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dfme_pokePage.getTotalElements(), dfme_pokePage.getContent());
+    }
 }

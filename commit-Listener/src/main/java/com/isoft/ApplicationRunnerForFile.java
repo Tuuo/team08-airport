@@ -16,7 +16,7 @@ import java.io.File;
 public class ApplicationRunnerForFile implements ApplicationRunner {
 
     //定义了要监视文件变化的目录路径
-    private String filePath = "E://DATA";
+    private String filePath = "D://DATA";
 
     /*在应用程序启动时执行任务的入口点。它由Spring Boot在应用程序上下文初始化后调用*/
     @Override

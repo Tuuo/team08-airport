@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>航班更换飞机消息</title>
+    <link rel="stylesheet" href="/layui/css/layui.css"/>
+    <style>
+        .layui-form-label {
+            white-space: nowrap
+        }
+
+        .layui-inline .layui-input-inline button {
+            border-radius: 5px;
+
+        }
+
+        .layui-breadcrumb {
+            position: relative;
+            top: 5px;
+            left: 15px;
+        }
+
+        .layui-btn {
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        #addOrUpdateBillDiv .layui-inline {
+            margin: 0 auto;
+            display: block;
+        }
+
+        #addOrUpdateBillDiv .titleContent {
+            margin: 10px 0;
+        }
+
+        #addOrUpdateBillDiv .layui-input-inline input {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+<span class="layui-breadcrumb">
+        <a href="http://localhost:8080">首页</a>
+    </span>
+
+<table id="newsTable" lay-filter="newsTable"></table>
+
+
+<script src="/layui/layui.js"></script>
+<script type="text/html" id="tableBar">
+    <form class="layui-form" lay-filter="searchFrom">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+
+                <label class="layui-form-label">航班编号</label>
+                <div class="layui-input-inline">
+                    <input id="flid" type="text" name="flid" lay-verify="title" autocomplete="off"
+                           placeholder="请输入编号" class="layui-input">
+                </div>
+                <label class="layui-form-label">航班标识</label>
+                <div class="layui-input-inline">
+                    <input id="fide" type="text" name="fide" lay-verify="title" autocomplete="off"
+                           placeholder="请输入名称" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline" style="width: 100px;">
+
+                    <button type="button" class="layui-btn  layui-btn-norma" lay-submit lay-filter="doSearch">搜索
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</script>
+
+
+<script type="text/javascript"  th:inline="none">
+    layui.use(function () {
+        let table = layui.table
+        let $ = layui.$
+        let layer = layui.layer
+        var form = layui.form;
+        var laydate = layui.laydate;
+
+
+// 搜索功能
+        form.on("submit(doSearch)", (data) => {
+
+            // 判断是否有搜索条件，如果没有，则将查询参数设置为空对象
+            console.log(data)
+            console.log(data.field)
+            tableInfo.reload({
+                where: data.field,
+                page: {
+                    curr: 1
+                }
+            }, "data");
+
+            // 禁止页面刷新
+            return false;
+        });
+
+
+        //渲染表格组件
+        var tableInfo = table.render({
+            elem: "#newsTable",
+            toolbar: "#tableBar",
+            url: "http://localhost:8081/airports/CFCE",
+            cols: [[
+                {checkbox: true,fixed: "left", width: 50},
+                {field: "id", title: "编号",width: 120},
+                {field: "meta_id", title: "消息序号"},
+                {field: "flid", title: "航班编号"},
+                {field: "ffid", title: "航班标识"},
+                {field: "fide", title: "详细航班标识"},
+                {field: "cftp", title: "机型代码"},
+                {field: "cfno", title: "机号代码"},
+            ]],
+            dataType: "json",
+            id: 'test',
+            page: true, // 是否显示分页
+            limits: [10, 15, 20],
+            limit: 10 // 每页默认显示的数量
+
+
+        });
+
+    });
+
+
+</script>
+</body>
+
+</html>
