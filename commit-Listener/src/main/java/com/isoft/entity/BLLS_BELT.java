@@ -14,7 +14,6 @@ public class BLLS_BELT {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer belt_id;
     private Integer btno;
-    private Long meta_id;
     private Long id;
     private String code;
     private String btat;
@@ -23,6 +22,5 @@ public class BLLS_BELT {
     private String rstr;
     private String rend;
     private String btsc;
-    private String exno;
     private Long blls_id;
 }

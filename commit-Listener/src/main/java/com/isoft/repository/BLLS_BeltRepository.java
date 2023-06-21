@@ -18,10 +18,10 @@ public interface BLLS_BeltRepository extends JpaRepository<BLLS_BELT, Integer> {
     public AIRL_Dflt saveApot(Integer btno,Long id,String code,String btat,String estr,String eend,String rstr,
     String rend,String btsc,Long bllsId);
 
-    @Query(value = "select dbb.belt_id,db.meta_id,dbb.btno,dbb.id,dbb.code,dbb.btat,dbb.estr,dbb.eend,dbb.rstr,dbb.rend,dbb.btsc,dbb.blls_id from TEAM08.DFME_BLLS_BELT dbb inner join TEAM08.DFME_BLLS db on(db.flid=dbb.blls_id)", nativeQuery = true)
+    @Query(value = "select dbb.belt_id, dbb.btno,  dbb.id, dbb.code, dbb.btat, dbb.estr, dbb.eend, dbb.rstr, dbb.rend, dbb.btsc, dbb.blls_id from TEAM08.DFME_BLLS_BELT dbb", nativeQuery = true)
     public Page<BLLS_BELT> findAll(Pageable pageable);
 
-    @Query(value = "select dbb.belt_id,db.meta_id,dbb.btno,dbb.id,dbb.code,dbb.btat,dbb.estr,dbb.eend,dbb.rstr,dbb.rend,dbb.btsc,dbb.blls_id from TEAM08.DFME_BLLS_BELT dbb inner join TEAM08.DFME_BLLS db on(db.flid=dbb.blls_id)  where btno like %:btno% and id like %:id%", countQuery = "select count(*) from TEAM08.DFME_BLLS_BELT  where btno like %:btno% and id like %:id%", nativeQuery = true)
+    @Query(value = "select dbb.belt_id,dbb.btno,dbb.id,dbb.code,dbb.btat,dbb.estr,dbb.eend,dbb.rstr,dbb.rend,dbb.btsc,dbb.blls_id from TEAM08.DFME_BLLS_BELT dbb where btno like %:btno% and id like %:id%", countQuery = "select count(*) from TEAM08.DFME_BLLS_BELT  where btno like %:btno% and id like %:id%", nativeQuery = true)
     public Page<BLLS_BELT> findAllByCodeAndCnnmContaining(@Param("btno") String btno, @Param("id") String id, Pageable pageable);
 
 }

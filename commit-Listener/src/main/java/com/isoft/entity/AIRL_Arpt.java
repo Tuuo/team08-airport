@@ -13,7 +13,6 @@ public class AIRL_Arpt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Long meta_id;
     private Integer apno;
     private String apcd;
     private String fptt;
