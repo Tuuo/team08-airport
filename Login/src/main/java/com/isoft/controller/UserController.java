@@ -91,6 +91,10 @@ public class UserController {
     public String getGTLS(){
         return "GTLS";
     }
+    @RequestMapping("/STLS")
+    public String getSTLS(){
+        return "STLS";
+    }
     //l
     @RequestMapping("/BORE")
     public String getBORE(){

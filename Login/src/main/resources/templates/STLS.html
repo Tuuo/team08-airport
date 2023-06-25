@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>航班机位动态信息更新</title>
+    <link rel="stylesheet" href="/layui/css/layui.css"/>
+    <style>
+        .layui-form-label {
+            white-space: nowrap
+        }
+
+        .layui-inline .layui-input-inline button {
+            border-radius: 5px;
+
+        }
+
+        .layui-breadcrumb {
+            position: relative;
+            top: 5px;
+            left: 15px;
+        }
+
+        .layui-btn {
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        #addOrUpdateBillDiv .layui-inline {
+            margin: 0 auto;
+            display: block;
+        }
+
+        #addOrUpdateBillDiv .titleContent {
+            margin: 10px 0;
+        }
+
+        #addOrUpdateBillDiv .layui-input-inline input {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+<span class="layui-breadcrumb">
+        <a href="http://localhost:8080">首页</a>
+    </span>
+
+<table id="newsTable" lay-filter="newsTable"></table>
+
+
+<script src="/layui/layui.js"></script>
+<script type="text/html" id="tableBar">
+    <form class="layui-form" lay-filter="searchFrom">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+
+                <label class="layui-form-label">航班编号</label>
+                <div class="layui-input-inline">
+                    <input id="flid" type="text" name="flid" lay-verify="title" autocomplete="off"
+                           placeholder="请输入编号" class="layui-input">
+                </div>
+                <label class="layui-form-label">航班标识</label>
+                <div class="layui-input-inline">
+                    <input id="fide" type="text" name="fide" lay-verify="title" autocomplete="off"
+                           placeholder="请输入名称" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline" style="width: 100px;">
+
+                    <button type="button" class="layui-btn  layui-btn-norma" lay-submit lay-filter="doSearch">搜索
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</script>
+
+
+<script type="text/javascript"  th:inline="none">
+    layui.use(function () {
+        let table = layui.table
+        let $ = layui.$
+        let layer = layui.layer
+        var form = layui.form;
+        var laydate = layui.laydate;
+
+
+// 搜索功能
+        form.on("submit(doSearch)", (data) => {
+
+            // 判断是否有搜索条件，如果没有，则将查询参数设置为空对象
+            console.log(data)
+            console.log(data.field)
+            tableInfo.reload({
+                where: data.field,
+                page: {
+                    curr: 1
+                }
+            }, "data");
+
+            // 禁止页面刷新
+            return false;
+        });
+
+
+        //渲染表格组件
+        var tableInfo = table.render({
+            elem: "#newsTable",
+            toolbar: "#tableBar",
+            url: "http://localhost:8081/airports/STLS",
+            cols: [[
+                {checkbox: true,fixed: "left", width: 50},
+                {field: "id", title: "编号",width: 80,sort:true},
+                {field: "meta_id", title: "消息序号",width: 100},
+                {field: "flid", title: "航班编号",width: 120},
+                {field: "ffid", title: "航班标识",width: 180},
+                {field: "fide", title: "详细航班标识",width: 220},
+                {field: "fatt", title: "航班属性",width: 100},
+                {field: "stno", title: "机位序号",width: 100},
+                {field: "code", title: "值机柜台编号",width: 150},
+                {field: "estr", title: "预计开始使用时间",width: 220},
+                {field: "eend", title: "预计结束使用时间",width: 220},
+                {field: "rstr", title: "实际开始使用时间",width: 220},
+                {field: "rend", title: "实际结束使用时间",width: 220},
+                {field: "cssi", title: "当前停放机位标识",width: 220},
+                {field: "btsc", title: "资源所属楼号",width: 150}
+            ]],
+            dataType: "json",
+            id: 'test',
+            page: true, // 是否显示分页
+            limits: [10, 15, 20],
+            limit: 10 // 每页默认显示的数量
+
+
+        });
+
+    });
+
+
+</script>
+</body>
+
+</html>

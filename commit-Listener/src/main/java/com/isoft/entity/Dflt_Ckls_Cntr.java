@@ -38,4 +38,5 @@ public class Dflt_Ckls_Cntr {
     private String rstr;
     private String rend;
     private String btsc;
+    private Long dflt_id;
 }

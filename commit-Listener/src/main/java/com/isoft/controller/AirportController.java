@@ -454,4 +454,20 @@ public LayUiResult getAPUE(PageVo pageVo, @RequestParam(required = false) String
         // 将查询结果和分页信息封装到LayUiResult对象中进行返回
         return new LayUiResult(dflt_gtls_gatePage.getTotalElements(), dflt_gtls_gatePage.getContent());
     }
+
+    @GetMapping("/STLS")
+    public LayUiResult getSTLS(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<DFME_STLS_STND> dfme_stls_stndPage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dfme_stls_stndPage = stndRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dfme_stls_stndPage = stndRepository.findAll(pageable);
+        }
+        System.out.println(dfme_stls_stndPage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dfme_stls_stndPage.getTotalElements(), dfme_stls_stndPage.getContent());
+    }
 }
