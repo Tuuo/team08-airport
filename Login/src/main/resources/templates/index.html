@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,7 @@
 
     <div class="ui segment" id="index-header-nav" th:fragment="nav-menu">
         <div class="ui secondary menu">
-            <a class="item"  th:href="@{/index}">首页</a>
+            <a class="item" th:href="@{/index}">首页</a>
 
             <!--登录注销-->
             <div class="right menu">
@@ -27,14 +27,14 @@
                     </a>
                 </div>
                 <div sec:authorize="isAuthenticated()">
-                <a class="item">
-                    用户名:<span sec:authentication="name"></span>
-                    角色：<span sec:authentication="authorities"></span>
-                </a></div>
+                    <a class="item">
+                        用户名:<span sec:authentication="name"></span>
+                        角色：<span sec:authentication="authorities"></span>
+                    </a></div>
                 <div sec:authorize="isAuthenticated()">
-                <a class="item" th:href="@{/logout}">
-                    <i class="sign-out icon"></i> 注销
-                </a></div>
+                    <a class="item" th:href="@{/logout}">
+                        <i class="sign-out icon"></i> 注销
+                    </a></div>
 
                 <!--已登录
                 <a th:href="@{/usr/toUserCenter}">
@@ -68,19 +68,8 @@
                             <br>
                             <div><a th:href="@{/ARRE}"><i class="bullhorn icon"></i>航班到达本站消息</a></div>
                             <br>
-                            <div><a th:href="@{/BLLS}"><i class="bullhorn icon"></i>航班行李提取转盘动态信息更新</a></div>
-                            <br>
-                            <div><a th:href="@{/BORE}"><i class="bullhorn icon"></i>航班开始登机消息</a></div>
-                            <br>
-                            <div><a th:href="@{/CANE}"><i class="bullhorn icon"></i>航班取消消息</a></div>
-                            <br>
-                            <div><a th:href="@{/CFCE}"><i class="bullhorn icon"></i>航班更换飞机消息</a></div>
-                            <br>
-                            <div><a th:href="@{/CKIE}"><i class="bullhorn icon"></i>航班开始值机消息</a></div>
-                            <br>
-                            <div><a th:href="@{/CKOE}"><i class="bullhorn icon"></i>航班截止值机消息</a></div>
-                            <br>
-                            <div><a th:href="@{/CKOE}"><i class="bullhorn icon"></i>航班本站起飞消息</a></div>
+                            <div><a th:href="@{/BLLS}"><i class="bullhorn icon"></i>航班行李提取转盘动态信息更新</a>
+                            </div>
                             <br>
                             <div><a th:href="@{/DLYE}"><i class="bullhorn icon"></i>航班延误消息</a></div>
                             <br>
@@ -95,8 +84,10 @@
                             <div><a th:href="@{/FETT}"><i class="bullhorn icon"></i>航班前站起飞时间</a></div>
                             <br>
                             <div><a th:href="@{/POKE}"><i class="bullhorn icon"></i>航班结束登机消息</a></div>
-
-
+                            <br>
+                            <div><a th:href="@{/CKLS}"><i class="bullhorn icon"></i>航班值机柜台动态信息更新</a></div>
+                            <br>
+                            <div><a th:href="@{/GTLS}"><i class="bullhorn icon"></i>航班登机门动态信息更新</a></div>
 
 
                         </div>
@@ -110,9 +101,18 @@
                         <div class="content">
                             <h5 class="content">Level 2</h5>
                             <hr>
-                            <div><a th:href="@{/level2/1}"><i class="bullhorn icon"></i> Level-2-1</a></div>
-                            <div><a th:href="@{/level2/2}"><i class="bullhorn icon"></i> Level-2-2</a></div>
-                            <div><a th:href="@{/level2/3}"><i class="bullhorn icon"></i> Level-2-3</a></div>
+                            <div><a th:href="@{/BORE}"><i class="bullhorn icon"></i>航班开始登机消息</a></div>
+                            <br>
+                            <div><a th:href="@{/CANE}"><i class="bullhorn icon"></i>航班取消消息</a></div>
+                            <br>
+                            <div><a th:href="@{/CFCE}"><i class="bullhorn icon"></i>航班更换飞机消息</a></div>
+                            <br>
+                            <div><a th:href="@{/CKIE}"><i class="bullhorn icon"></i>航班开始值机消息</a></div>
+                            <br>
+                            <div><a th:href="@{/CKOE}"><i class="bullhorn icon"></i>航班截止值机消息</a></div>
+                            <br>
+                            <div><a th:href="@{/CKOE}"><i class="bullhorn icon"></i>航班本站起飞消息</a></div>
+                            <br>
                         </div>
                     </div>
                 </div>
@@ -134,7 +134,7 @@
 
         </div>
     </div>
-    
+
 </div>
 
 

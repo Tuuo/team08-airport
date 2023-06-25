@@ -83,6 +83,14 @@ public class UserController {
     public String getBLLS(){
         return "BLLS";
     }
+    @RequestMapping("/CKLS")
+    public String getCKLS(){
+        return "CKLS";
+    }
+    @RequestMapping("/GTLS")
+    public String getGTLS(){
+        return "GTLS";
+    }
     //l
     @RequestMapping("/BORE")
     public String getBORE(){

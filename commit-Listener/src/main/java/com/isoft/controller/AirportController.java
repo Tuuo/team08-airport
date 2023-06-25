@@ -5,6 +5,7 @@ import com.isoft.entity.*;
 import com.isoft.repository.*;
 import com.isoft.vo.PageVo;
 import org.apache.commons.lang3.StringUtils;
+import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -118,6 +119,7 @@ public LayUiResult getAPUE(PageVo pageVo, @RequestParam(required = false) String
     } else {
         apuePage = apotRepository.findAll(pageable);
     }
+    System.out.println(apuePage.getContent());
     // 将查询结果和分页信息封装到LayUiResult对象中进行返回
     return new LayUiResult(apuePage.getTotalElements(), apuePage.getContent());
 }
@@ -133,6 +135,7 @@ public LayUiResult getAPUE(PageVo pageVo, @RequestParam(required = false) String
         } else {
             crftPage = crftRepository.findAll(pageable);
         }
+        System.out.println(crftPage.getContent());
         // 将查询结果和分页信息封装到LayUiResult对象中进行返回
         return new LayUiResult(crftPage.getTotalElements(), crftPage.getContent());
     }
@@ -418,5 +421,37 @@ public LayUiResult getAPUE(PageVo pageVo, @RequestParam(required = false) String
         System.out.println(dfme_pokePage.getContent());
         // 将查询结果和分页信息封装到LayUiResult对象中进行返回
         return new LayUiResult(dfme_pokePage.getTotalElements(), dfme_pokePage.getContent());
+    }
+
+    @GetMapping("/CKLS")
+    public LayUiResult getCKLS(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<Dflt_Ckls_Cntr> dflt_ckls_cntrPage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dflt_ckls_cntrPage = dflt_ckls_cntrRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dflt_ckls_cntrPage = dflt_ckls_cntrRepository.findAll(pageable);
+        }
+        System.out.println(dflt_ckls_cntrPage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dflt_ckls_cntrPage.getTotalElements(), dflt_ckls_cntrPage.getContent());
+    }
+
+    @GetMapping("/GTLS")
+    public LayUiResult getGTLS(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<Dflt_Gtls_Gate> dflt_gtls_gatePage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dflt_gtls_gatePage = dflt_gtls_gateRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dflt_gtls_gatePage = dflt_gtls_gateRepository.findAll(pageable);
+        }
+        System.out.println(dflt_gtls_gatePage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dflt_gtls_gatePage.getTotalElements(), dflt_gtls_gatePage.getContent());
     }
 }

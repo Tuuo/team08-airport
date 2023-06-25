@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>航班延误消息</title>
+    <title>航班登机门动态信息更新</title>
     <link rel="stylesheet" href="/layui/css/layui.css"/>
     <style>
         .layui-form-label {
@@ -113,24 +113,24 @@
         var tableInfo = table.render({
             elem: "#newsTable",
             toolbar: "#tableBar",
-            url: "http://localhost:8081/airports/DLYE",
+            url: "http://localhost:8081/airports/GTLS",
             cols: [[
                 {checkbox: true,fixed: "left", width: 50},
-                {field: "id", title: "编号",width: 80},
-                {field: "meta_id", title: "消息序号",width: 120},
-                {field: "flid", title: "航班编号",width: 100},
-                {field: "ffid", title: "航班标识",width: 180},
+                {field: "gate_ID", title: "编号",width: 80},
+                {field: "meta_id", title: "消息序号",width: 80},
+                {field: "flid", title: "航班编号",width: 80},
+                {field: "ffid", title: "航班标识",width: 150},
                 {field: "fide", title: "详细航班标识",width: 220},
-                {field: "fatt", title: "机场属性",width: 100},
-                {field: "abst", title: "航班不正常状态",width: 150},
-                {field: "iast", title: "内部航班不正常状态",width: 180},
-                {field: "abrs", title: "航班发布不正常状态",width: 180},
-                {field: "iars", title: "内部航班不正常原因",width: 180},
-                {field: "mabs", title: "航班发布不正常状态2",width: 180},
-                {field: "mabr", title: "航班发布不正常原因2",width: 180},
-                {field: "mias", title: "内部航班不正常状态2",width: 180},
-                {field: "miar", title: "内部航班发布不正常原因2",width: 180},
-                {field: "fett", title: "航班预计时间",width: 180},
+                {field: "fatt", title: "航班属性",width: 80},
+                {field: "gtno", title: "登机门序号",width: 120},
+                {field: "id", title: "登机门唯一标识",width: 150},
+                {field: "code", title: "登机门编号",width: 120},
+                {field: "gtat", title: "登机门属性",width: 120},
+                {field: "estr", title: "预计开始使用时间",width: 200},
+                {field: "eend", title: "预计结束使用时间",width: 200},
+                {field: "rstr", title: "实际开始使用时间",width: 200},
+                {field: "rend", title: "实际结束使用时间",width: 200},
+                {field: "btsc", title: "资源所属楼号",width: 120},
             ]],
             dataType: "json",
             id: 'test',

@@ -59,12 +59,12 @@
         <div class="layui-form-item">
             <div class="layui-inline">
 
-                <label class="layui-form-label">航班序号</label>
+                <label class="layui-form-label">转盘序号</label>
                 <div class="layui-input-inline">
                     <input id="apno" type="text" name="apno" lay-verify="title" autocomplete="off"
                            placeholder="请输入编号" class="layui-input">
                 </div>
-                <label class="layui-form-label">三字码</label>
+                <label class="layui-form-label">唯一编号</label>
                 <div class="layui-input-inline">
                     <input id="apcd" type="text" name="apcd" lay-verify="title" autocomplete="off"
                            placeholder="请输入名称" class="layui-input">
@@ -116,15 +116,15 @@
             url: "http://localhost:8081/airports/BLLS",
             cols: [[
                 {checkbox: true,fixed: "left", width: 50},
-                {field: "belt_id", title: "编号",width: 120},
-                {field: "btno", title: "行李提取序号"},
-                {field: "id", title: "行李提取转盘唯一标识"},
-                {field: "code", title: "行李提取转盘编号"},
+                {field: "belt_id", title: "编号",width: 80},
+                {field: "btno", title: "行李提取序号",width: 120},
+                {field: "id", title: "行李提取转盘唯一标识",width: 170},
+                {field: "code", title: "行李提取转盘编号",width: 150},
                 {field: "btat", title: "机场属性"},
-                {field: "estr", title: "预计开始使用时间"},
-                {field: "eend", title: "预计结束使用时间"},
-                {field: "rstr", title: "实际开始使用时间"},
-                {field: "rend", title: "实际结束使用时间"},
+                {field: "estr", title: "预计开始使用时间",width: 150},
+                {field: "eend", title: "预计结束使用时间",width: 150},
+                {field: "rstr", title: "实际开始使用时间",width: 150},
+                {field: "rend", title: "实际结束使用时间",width: 150},
                 {field: "btsc", title: "航站楼编号"},
                 {field: "blls_id", title: "航班编号"},
 
