@@ -470,4 +470,36 @@ public LayUiResult getAPUE(PageVo pageVo, @RequestParam(required = false) String
         // 将查询结果和分页信息封装到LayUiResult对象中进行返回
         return new LayUiResult(dfme_stls_stndPage.getTotalElements(), dfme_stls_stndPage.getContent());
     }
+
+    @GetMapping("/DFDL")
+    public LayUiResult getDFDL(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<Dflt_Dfdl_Arpt> dflt_dfdl_arptPage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dflt_dfdl_arptPage = dflt_dfdl_arptRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dflt_dfdl_arptPage = dflt_dfdl_arptRepository.findAll(pageable);
+        }
+        System.out.println(dflt_dfdl_arptPage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dflt_dfdl_arptPage.getTotalElements(), dflt_dfdl_arptPage.getContent());
+    }
+
+    @GetMapping("/DFIE")
+    public LayUiResult getDFIE(PageVo pageVo, @RequestParam(required = false) String flid, @RequestParam(required = false) String fide) {
+        // 创建分页请求
+        Pageable pageable = PageRequest.of(pageVo.getPage() - 1, pageVo.getLimit());
+        // 调用查询方法获取分页结果
+        Page<Dflt_Dfie_Arpt> dflt_dfie_arptPage = null;
+        if (StringUtils.isNoneBlank(flid) && StringUtils.isNoneBlank(fide)) {
+            dflt_dfie_arptPage = dflt_dfie_arptRepository.findAllByCodeAndCnnmContaining(flid, fide, pageable);
+        } else {
+            dflt_dfie_arptPage = dflt_dfie_arptRepository.findAll(pageable);
+        }
+        System.out.println(dflt_dfie_arptPage.getContent());
+        // 将查询结果和分页信息封装到LayUiResult对象中进行返回
+        return new LayUiResult(dflt_dfie_arptPage.getTotalElements(), dflt_dfie_arptPage.getContent());
+    }
 }

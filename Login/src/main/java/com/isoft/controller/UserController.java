@@ -91,6 +91,14 @@ public class UserController {
     public String getGTLS(){
         return "GTLS";
     }
+    @RequestMapping("/DFDL")
+    public String getDFDL(){
+        return "DFDL";
+    }
+    @RequestMapping("/DFIE")
+    public String getDFIE(){
+        return "DFIE";
+    }
     @RequestMapping("/STLS")
     public String getSTLS(){
         return "STLS";

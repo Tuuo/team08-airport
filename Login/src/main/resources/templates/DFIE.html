@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>航班动态增加信息</title>
+    <link rel="stylesheet" href="/layui/css/layui.css"/>
+    <style>
+        .layui-form-label {
+            white-space: nowrap
+        }
+
+        .layui-inline .layui-input-inline button {
+            border-radius: 5px;
+
+        }
+
+        .layui-breadcrumb {
+            position: relative;
+            top: 5px;
+            left: 15px;
+        }
+
+        .layui-btn {
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        #addOrUpdateBillDiv .layui-inline {
+            margin: 0 auto;
+            display: block;
+        }
+
+        #addOrUpdateBillDiv .titleContent {
+            margin: 10px 0;
+        }
+
+        #addOrUpdateBillDiv .layui-input-inline input {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+<span class="layui-breadcrumb">
+        <a href="http://localhost:8080">首页</a>
+    </span>
+
+<table id="newsTable" lay-filter="newsTable"></table>
+
+
+<script src="/layui/layui.js"></script>
+<script type="text/html" id="tableBar">
+    <form class="layui-form" lay-filter="searchFrom">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+
+                <label class="layui-form-label">航班编号</label>
+                <div class="layui-input-inline">
+                    <input id="flid" type="text" name="flid" lay-verify="title" autocomplete="off"
+                           placeholder="请输入编号" class="layui-input">
+                </div>
+                <label class="layui-form-label">航班标识</label>
+                <div class="layui-input-inline">
+                    <input id="fide" type="text" name="fide" lay-verify="title" autocomplete="off"
+                           placeholder="请输入名称" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline" style="width: 100px;">
+
+                    <button type="button" class="layui-btn  layui-btn-norma" lay-submit lay-filter="doSearch">搜索
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</script>
+
+
+<script type="text/javascript"  th:inline="none">
+    layui.use(function () {
+        let table = layui.table
+        let $ = layui.$
+        let layer = layui.layer
+        var form = layui.form;
+        var laydate = layui.laydate;
+
+
+// 搜索功能
+        form.on("submit(doSearch)", (data) => {
+
+            // 判断是否有搜索条件，如果没有，则将查询参数设置为空对象
+            console.log(data)
+            console.log(data.field)
+            tableInfo.reload({
+                where: data.field,
+                page: {
+                    curr: 1
+                }
+            }, "data");
+
+            // 禁止页面刷新
+            return false;
+        });
+
+
+        //渲染表格组件
+        var tableInfo = table.render({
+            elem: "#newsTable",
+            toolbar: "#tableBar",
+            url: "http://localhost:8081/airports/DFIE",
+            cols: [[
+                {checkbox: true,fixed: "left", width: 50},
+                {field: "id", title: "编号",width: 80},
+                {field: "meta_id", title: "消息序号",width: 120},
+                {field: "flid", title: "航班编号",width: 120},
+                {field: "ffid", title: "航班标识",width: 180},
+                {field: "fide", title: "详细航班标识",width: 220},
+                {field: "test", title: "测试",width: 120},
+                {field: "awcd", title: "航空公司二字码",width: 180},
+                {field: "flno", title: "航班号",width: 120},
+                {field: "fexd", title: "航班执行日期",width: 180},
+                {field: "fimd", title: "航班所属计划批次的标识日期",width: 220},
+                {field: "flio", title: "航班进出标志",width: 180},
+                {field: "fltk", title: "航班任务",width: 120},
+                {field: "fatt", title: "航班属性",width: 120},
+                {field: "patt", title: "航班属性旧值",width: 180},
+                {field: "mfid", title: "主航班标识",width: 180},
+                {field: "mffi", title: "主航班标识",width: 180},
+                {field: "cftp", title: "机型",width: 100},
+                {field: "cfno", title: "机号",width: 100},
+                {field: "stat", title: "航班发布状态",width: 180},
+                {field: "abst", title: "航班发布不正常状态",width: 220},
+                {field: "abrs", title: "航班发布不正常原因",width: 220},
+                {field: "ista", title: "内部航班状态",width: 180},
+                {field: "iast", title: "内部航班不正常状态",width: 220},
+                {field: "iars", title: "内部航班不正常原因",width: 220},
+                {field: "msta", title: "航班发布状态2",width: 180},
+                {field: "mabs", title: "航班发布不正常状态2",width: 220},
+                {field: "mabr", title: "航班发布不正常原因2",width: 220},
+                {field: "mist", title: "内部航班状态2",width: 180},
+                {field: "mias", title: "内部航班不正常状态2",width: 220},
+                {field: "miar", title: "内部航班不正常状态2",width: 220},
+                {field: "bort", title: "航班开始登机实际时间",width: 220},
+                {field: "mbor", title: "航班开始登机实际时间",width: 220},
+                {field: "tbrt", title: "航班过站登机",width: 180},
+                {field: "mtbr", title: "航班过站登机时间",width: 180},
+                {field: "lbdt", title: "航班催促登机实际时间",width: 220},
+                {field: "mlbd", title: "航班催促登机实际时间",width: 220},
+                {field: "pokt", title: "航班结束登机实际时间",width: 220},
+                {field: "mpok", title: "航班结束登机实际时间",width: 220},
+                {field: "apot", title: "备降航站",width: 120},
+                {field: "dett", title: "备降预计起飞时间",width: 220},
+                {field: "drtt", title: "备降实际起飞时间",width: 220},
+                {field: "delt", title: "备降预计降落时间",width: 220},
+                {field: "drlt", title: "备降实际降落时间",width: 220},
+                {field: "vip", title: "VIP人数",width: 120},
+                {field: "sflg", title: "共享航班组标签",width: 220},
+                {field: "gtls", title: "航班登机门动态信息标签",width: 220},
+                {field: "blls", title: "航班行李提取转盘动态信息标签",width: 220},
+                {field: "fces", title: "航班旅客值机预计开始时间1",width: 220},
+                {field: "fcee", title: "航班旅客值机预计结束时间1",width: 220},
+                {field: "fcrs", title: "航班旅客值机实际开始时间1",width: 220},
+                {field: "fcre", title: "航班旅客值机实际结束时间1",width: 220},
+                {field: "mces", title: "航班旅客值机预计开始时间2",width: 220},
+                {field: "mcee", title: "航班旅客值机预计结束时间2",width: 220},
+                {field: "mcrs", title: "航班旅客值机实际开始时间2",width: 220},
+                {field: "mcre", title: "航班旅客值机实际结束时间2",width: 220},
+                {field: "fcdp", title: "值机柜台及值机柜台区域显示1",width: 220},
+                {field: "mcdp", title: "值机柜台及值机柜台区域显示2",width: 220},
+                {field: "chls", title: "航班行李滑槽动态更新信息标签",width: 220},
+                {field: "stls", title: "航班机位动态更新信息标签",width: 220},
+                {field: "nmcd", title: "国内航站楼编号",width: 180},
+                {field: "jmcd", title: "国际航站楼编号",width: 180},
+                {field: "fldt", title: "第一件行李上架时间",width: 220},
+                {field: "lldt", title: "最后一件行李上架时间",width: 220},
+                {field: "cont", title: "起降架次",width: 120},
+                {field: "prox", title: "航班代理",width: 120},
+                {field: "apno", title: "航站序号",width: 120},
+                {field: "apcd", title: "航站三字码",width: 180},
+                {field: "fpdd", title: "计划起飞时间",width: 180},
+                {field: "fett", title: "预计起飞时间",width: 180},
+                {field: "frtt", title: "实际起飞时间",width: 180},
+                {field: "fplt", title: "计划降落时间",width: 180},
+                {field: "felt", title: "预计降落时间",width: 180},
+                {field: "frlt", title: "实际降落时间",width: 180},
+                {field: "apat", title: "航展属性",width: 120},
+            ]],
+            dataType: "json",
+            id: 'test',
+            page: true, // 是否显示分页
+            limits: [10, 15, 20],
+            limit: 10 // 每页默认显示的数量
+
+
+        });
+
+    });
+
+
+</script>
+</body>
+
+</html>

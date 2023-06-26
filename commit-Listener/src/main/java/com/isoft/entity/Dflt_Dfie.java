@@ -10,10 +10,10 @@ import javax.persistence.Id;
 @Entity(name = "DFOE_DFIE")
 @Data
 public class Dflt_Dfie {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long meta_id;
-    @Id
     private Long flid;
     private String afid;
     private String ffid;
