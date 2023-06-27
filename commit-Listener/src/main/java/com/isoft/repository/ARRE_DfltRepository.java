@@ -22,4 +22,8 @@ public interface ARRE_DfltRepository  extends JpaRepository<ARRE_Dflt, Integer> 
     @Query(value = "select * from TEAM08.DFME_ARRE where flid like %:flid% and fide like %:fide%", countQuery = "select count(*) from TEAM08.DFME_ARRE where flid like %:flid% and fide like %:fide%", nativeQuery = true)
     public Page<ARRE_Dflt> findAllByCodeAndCnnmContaining(@Param("flid") String flid, @Param("fide") String fide, Pageable pageable);
 
+    @Query(value = "SELECT fatt, COUNT(*) AS count " +
+            "FROM TEAM08.DFME_ARRE " +
+            "GROUP BY fatt",nativeQuery = true)
+    public List<String> findCountApat();
 }

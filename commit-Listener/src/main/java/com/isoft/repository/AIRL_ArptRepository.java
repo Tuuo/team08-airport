@@ -24,4 +24,8 @@ public interface AIRL_ArptRepository extends JpaRepository<AIRL_Arpt,Integer> {
     @Query(value = "select daa.id,daa.apno,daa.apcd,daa.fptt,daa.fett,daa.FRTT,daa.FPLT,daa.FELT,daa.FRLT,daa.APAT,daa.AIRL_ID from TEAM08.DFME_AIRL_ARPT daa where apno like %:apno% and apcd like %:apcd%", countQuery = "select count(*) from TEAM08.DFME_AIRL_ARPT  where apno like %:apno% and apcd like %:apcd%", nativeQuery = true)
     public Page<AIRL_Arpt> findAllByCodeAndCnnmContaining(@Param("apno") String apno, @Param("apcd") String apcd, Pageable pageable);
 
+    @Query(value = "SELECT apat, COUNT(*) AS count " +
+            "FROM TEAM08.DFME_AIRL_ARPT " +
+            "GROUP BY apat",nativeQuery = true)
+    public List<String> findCountApat();
 }

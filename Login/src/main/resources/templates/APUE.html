@@ -15,7 +15,6 @@
 
         .layui-inline .layui-input-inline button {
             border-radius: 5px;
-
         }
 
         .layui-breadcrumb {
@@ -148,7 +147,7 @@
         .then(response => {
             const data = response.data.map(item => {
                 const [name, value] = item.split(',');
-                return { name: name === '2403' ? '国内' : name === '2401' ? '国际' : '地区', value: parseInt(value) };
+                return { name: name === '2403' ? '国内' : name === '2401' ? '国际' : name === '2402' ? '混合' :'地区', value: parseInt(value) };
             });
 
             // 创建 ECharts 实例

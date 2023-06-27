@@ -42,6 +42,9 @@
         #addOrUpdateBillDiv .layui-input-inline input {
             width: 200px;
         }
+        #chart{
+            margin: 0 auto;
+        }
     </style>
 </head>
 
@@ -80,7 +83,11 @@
         </div>
     </form>
 </script>
-
+<hr>
+<br>
+<div id="chart" style="width: 1000px; height: 800px"></div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/layui/echarts.js"></script>
 
 <script type="text/javascript"  th:inline="none">
     layui.use(function () {
@@ -117,17 +124,17 @@
             cols: [[
                 {checkbox: true,fixed: "left", width: 50},
                 {field: "id", title: "编号",width: 80},
-                {field: "meta_id", title: "消息序号"},
-                {field: "flid", title: "航班编号"},
+                {field: "meta_id", title: "消息序号",width: 120},
+                {field: "flid", title: "航班编号",width: 120},
                 {field: "ffid", title: "航班标识",width: 180},
                 {field: "fide", title: "详细航班标识",width: 220},
-                {field: "fatt", title: "机场属性"},
-                {field: "stat", title: "航班发布状态"},
-                {field: "ista", title: "航班状态"},
+                {field: "fatt", title: "机场属性",width: 120},
+                {field: "stat", title: "航班发布状态",width: 180},
+                {field: "ista", title: "航班状态",width: 120},
                 {field: "bort", title: "航班开始登机实际时间",width: 220},
-                {field: "msta", title: "航班发布状态"},
-                {field: "mist", title: "内部航班状态"},
-                {field: "mbor", title: "航班开始登机实际时间"},
+                {field: "msta", title: "航班发布状态",width: 180},
+                {field: "mist", title: "内部航班状态",width: 180},
+                {field: "mbor", title: "航班开始登机实际时间",width: 220},
             ]],
             dataType: "json",
             id: 'test',
@@ -139,6 +146,42 @@
         });
 
     });
+
+    axios.get('http://localhost:8081/echartsBORE')
+        .then(response => {
+            const data = response.data.map(item => {
+                const [name, value] = item.split(',');
+                return { name: name === '2403' ? '国内' : name === '2401' ? '国际' : name === '2402' ? '混合' :'地区', value: parseInt(value) };
+            });
+
+            // 创建 ECharts 实例
+            const myChart = echarts.init(document.getElementById('chart'));
+
+            // 设置图表的基本属性
+            myChart.setOption({
+                title: {
+                    text: '机场属性占比',
+                    subtext: 'Fake Data',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left'
+                },
+                series: [{
+                    name: '机场属性占比',
+                    type: 'pie',
+                    data: data
+                }]
+            });
+
+            // 渲染图表
+            myChart.render();
+        })
+        .catch(error => console.log(error));
 
 
 </script>

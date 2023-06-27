@@ -23,5 +23,8 @@ public interface BLLS_BeltRepository extends JpaRepository<BLLS_BELT, Integer> {
 
     @Query(value = "select dbb.belt_id,dbb.btno,dbb.id,dbb.code,dbb.btat,dbb.estr,dbb.eend,dbb.rstr,dbb.rend,dbb.btsc,dbb.blls_id from TEAM08.DFME_BLLS_BELT dbb where btno like %:btno% and id like %:id%", countQuery = "select count(*) from TEAM08.DFME_BLLS_BELT  where btno like %:btno% and id like %:id%", nativeQuery = true)
     public Page<BLLS_BELT> findAllByCodeAndCnnmContaining(@Param("btno") String btno, @Param("id") String id, Pageable pageable);
-
+    @Query(value = "SELECT btat, COUNT(*) AS count " +
+            "FROM TEAM08.DFME_BLLS_BELT " +
+            "GROUP BY btat",nativeQuery = true)
+    public List<String> findCountApat();
 }
