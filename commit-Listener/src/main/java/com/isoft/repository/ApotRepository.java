@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Map;
 
 
 public interface ApotRepository extends JpaRepository<Apot, Integer> {
@@ -23,4 +24,8 @@ public interface ApotRepository extends JpaRepository<Apot, Integer> {
     @Query(value = "select * from TEAM08.BASE_APUE where code like %:code% and cnnm like %:cnnm%", countQuery = "select count(*) from TEAM08.BASE_APUE where code like %:code% and cnnm like %:cnnm%", nativeQuery = true)
     public Page<Apot> findAllByCodeAndCnnmContaining(@Param("code") String code, @Param("cnnm") String cnnm, Pageable pageable);
 
+    @Query(value = "SELECT apat, COUNT(*) AS count\n" +
+            "FROM TEAM08.BASE_APUE\n" +
+            "GROUP BY apat",nativeQuery = true)
+    public List<String> findCountApat();
 }

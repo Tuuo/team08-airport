@@ -42,6 +42,9 @@
         #addOrUpdateBillDiv .layui-input-inline input {
             width: 200px;
         }
+        #chart{
+            margin: 0 auto;
+        }
     </style>
 </head>
 
@@ -80,8 +83,11 @@
         </div>
     </form>
 </script>
-
-
+<hr>
+<br>
+<div id="chart" style="width: 1000px; height: 800px"></div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/layui/echarts.js"></script>
 <script type="text/javascript"  th:inline="none">
     layui.use(function () {
         let table = layui.table
@@ -137,6 +143,42 @@
 
     });
 
+    // 从后台获取数据
+    axios.get('http://localhost:8081/echartsAPUE')
+        .then(response => {
+            const data = response.data.map(item => {
+                const [name, value] = item.split(',');
+                return { name: name === '2403' ? '国内' : name === '2401' ? '国际' : '地区', value: parseInt(value) };
+            });
+
+            // 创建 ECharts 实例
+            const myChart = echarts.init(document.getElementById('chart'));
+
+            // 设置图表的基本属性
+            myChart.setOption({
+                title: {
+                    text: '机场属性占比',
+                    subtext: 'Fake Data',
+                    left: 'center'
+                },
+                tooltip: {
+                    trigger: 'item'
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left'
+                },
+                series: [{
+                    name: '机场属性占比',
+                    type: 'pie',
+                    data: data
+                }]
+            });
+
+            // 渲染图表
+            myChart.render();
+        })
+        .catch(error => console.log(error));
 
 </script>
 </body>
