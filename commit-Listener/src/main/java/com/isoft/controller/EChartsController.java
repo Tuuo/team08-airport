@@ -54,6 +54,9 @@ public class EChartsController {
     @Autowired
     Dflt_Dfie_ArptRepository dflt_dfie_arptRepository;
 
+    @Autowired
+    Dflt_GtlsRepository dflt_gtlsRepository;
+
     @GetMapping("/echartsAPUE")
     public List<String> echartAPUE() {
         System.out.println(apotRepository.findCountApat());
@@ -139,8 +142,8 @@ public class EChartsController {
 
     @GetMapping("/echartsGTLS")
     public List<String> echartGTLS() {
-        System.out.println(dflt_gtls_gateRepository.findCountApat());
-        return dflt_gtls_gateRepository.findCountApat();
+        System.out.println(dflt_gtlsRepository.findCountApat());
+        return dflt_gtlsRepository.findCountApat();
     }
 
     @GetMapping("/echartsSTLS")
