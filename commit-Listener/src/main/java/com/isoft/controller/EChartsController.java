@@ -35,6 +35,25 @@ public class EChartsController {
     @Autowired
     Dflt_CkoeRepository dflt_ckoeRepository;
 
+    @Autowired
+    Dflt_DepeRepository dflt_depeRepository;
+    @Autowired
+    DFME_LBDERepository dfme_lbdeRepository;
+    @Autowired
+    DFME_ONRERepository dfme_onreRepository;
+    @Autowired
+    DFME_POKERepository dfme_pokeRepository;
+    @Autowired
+    Dflt_Ckls_CntrRepository dflt_ckls_cntrRepository;
+    @Autowired
+    Dflt_Gtls_GateRepository dflt_gtls_gateRepository;
+    @Autowired
+    DFME_STLS_STNDRepository dfme_stls_stndRepository;
+    @Autowired
+    Dflt_Dfdl_ArptRepository dflt_dfdl_arptRepository;
+    @Autowired
+    Dflt_Dfie_ArptRepository dflt_dfie_arptRepository;
+
     @GetMapping("/echartsAPUE")
     public List<String> echartAPUE() {
         System.out.println(apotRepository.findCountApat());
@@ -88,4 +107,58 @@ public class EChartsController {
         return dflt_ckoeRepository.findCountApat();
     }
 
+    @GetMapping("/echartsDEPE")
+    public List<String> echartDEPE() {
+        System.out.println(dflt_depeRepository.findCountApat());
+        return dflt_depeRepository.findCountApat();
+    }
+
+    @GetMapping("/echartsLBDE")
+    public List<String> echartLBDE() {
+        System.out.println(dfme_lbdeRepository.findCountApat());
+        return dfme_lbdeRepository.findCountApat();
+    }
+
+    @GetMapping("/echartsONRE")
+    public List<String> echartONRE() {
+        System.out.println(dfme_onreRepository.findCountApat());
+        return dfme_onreRepository.findCountApat();
+    }
+
+    @GetMapping("/echartsPOKE")
+    public List<String> echartPOKE() {
+        System.out.println(dfme_pokeRepository.findCountApat());
+        return dfme_pokeRepository.findCountApat();
+    }
+
+    @GetMapping("/echartsCKLS")
+    public List<String> echartCKLS() {
+        System.out.println(dflt_ckls_cntrRepository.findCountApat());
+        return dflt_ckls_cntrRepository.findCountApat();
+    }
+
+    @GetMapping("/echartsGTLS")
+    public List<String> echartGTLS() {
+        System.out.println(dflt_gtls_gateRepository.findCountApat());
+        return dflt_gtls_gateRepository.findCountApat();
+    }
+
+    @GetMapping("/echartsSTLS")
+    public List<String> echartSTLS() {
+        System.out.println(dfme_stls_stndRepository.findCountApat());
+        return dfme_stls_stndRepository.findCountApat();
+    }
+
+    @GetMapping("/echartsDFDL")
+    public List<String> echartDFDL() {
+        System.out.println(dflt_dfdl_arptRepository.findCountApat());
+        return dflt_dfdl_arptRepository.findCountApat();
+    }
+
+
+    @GetMapping("/echartsDFIE")
+    public List<String> echartDFIE() {
+        System.out.println(dflt_dfie_arptRepository.findCountApat());
+        return dflt_dfie_arptRepository.findCountApat();
+    }
 }

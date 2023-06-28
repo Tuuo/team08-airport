@@ -1,7 +1,7 @@
 create table T_AUTHORITY
 (
     --
-    ID        INT(10),
+    ID        INT,
     AUTHORITY VARCHAR(20)
 );
 
@@ -15,27 +15,27 @@ alter table T_AUTHORITY
 create table T_CUSTOMER
 (
     --
-    ID       INT(10),
+    ID       INT,
     USERNAME VARCHAR(200) default 'NULL'
-        constraint T_CUSTOMER_USERNAME_UINDEX
+        constraint INDEX33556466
             unique,
     PASSWORD VARCHAR(200) default 'NULL',
-    VALID    INT(10) default '1' not null
+    VALID    INT default '1' not null
 );
 
-create unique index INDEX33555681
+create unique index INDEX33556465
     on T_CUSTOMER (ID);
 
 alter table T_CUSTOMER
-    add constraint CONS134218999
+    add constraint CONS134219786
         primary key (ID);
 
 create table T_CUSTOMER_AUTHORITY
 (
     --
-    ID           INT(10),
-    CUSTOMER_ID  INT(10) default NULL,
-    AUTHORITY_ID INT(10) default NULL
+    ID           INT,
+    CUSTOMER_ID  INT default NULL,
+    AUTHORITY_ID INT default NULL
 );
 
 create unique index INDEX33555683
@@ -44,4 +44,5 @@ create unique index INDEX33555683
 alter table T_CUSTOMER_AUTHORITY
     add constraint CONS134219000
         primary key (ID);
+
 

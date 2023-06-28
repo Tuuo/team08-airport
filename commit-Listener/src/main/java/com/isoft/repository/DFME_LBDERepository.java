@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface DFME_LBDERepository extends JpaRepository<DFME_LBDE, Integer> {
     @Query(value ="insert into TEAM08.DFME_LBDE(meta_id,flid,ffid,fide,fatt,stat,ista,lbdt,msta,mist,mlbd)"+
             "values(?1,?2,?3,?4,?5,?6,?7,?8,?9,?10,?11)",nativeQuery = true)
@@ -19,4 +21,8 @@ public interface DFME_LBDERepository extends JpaRepository<DFME_LBDE, Integer> {
     @Query(value = "select * from TEAM08.DFME_LBDE where flid like %:flid% and fide like %:fide%", countQuery = "select count(*) from TEAM08.DFME_LBDE where flid like %:flid% and fide like %:fide%", nativeQuery = true)
     public Page<DFME_LBDE> findAllByCodeAndCnnmContaining(@Param("flid") String flid, @Param("fide") String fide, Pageable pageable);
 
+    @Query(value = "SELECT fatt, COUNT(*) AS count " +
+            "FROM TEAM08.DFME_LBDE " +
+            "GROUP BY fatt",nativeQuery = true)
+    public List<String> findCountApat();
 }

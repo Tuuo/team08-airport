@@ -7,10 +7,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="team08-airport22" />
+        <module name="team08-airport222" />
         <module name="team08-airport11" />
-        <module name="Login" />
+        <module name="team08-airport22" />
         <module name="team08-airport" />
+        <module name="Login" />
         <module name="commit-Listener" />
       </profile>
     </annotationProcessing>
@@ -24,6 +25,7 @@
       <module name="team08-airport" options="" />
       <module name="team08-airport11" options="" />
       <module name="team08-airport22" options="" />
+      <module name="team08-airport222" options="" />
     </option>
   </component>
 </project>
