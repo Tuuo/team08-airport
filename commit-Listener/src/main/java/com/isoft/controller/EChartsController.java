@@ -53,7 +53,11 @@ public class EChartsController {
     Dflt_Dfdl_ArptRepository dflt_dfdl_arptRepository;
     @Autowired
     Dflt_Dfie_ArptRepository dflt_dfie_arptRepository;
+    @Autowired
+    DFME_STLSRepository dfme_stlsRepository;
 
+    @Autowired
+    Dflt_CklsRepository dflt_cklsRepository;
     @Autowired
     Dflt_GtlsRepository dflt_gtlsRepository;
 
@@ -136,8 +140,8 @@ public class EChartsController {
 
     @GetMapping("/echartsCKLS")
     public List<String> echartCKLS() {
-        System.out.println(dflt_ckls_cntrRepository.findCountApat());
-        return dflt_ckls_cntrRepository.findCountApat();
+        System.out.println(dflt_cklsRepository.findCountApat());
+        return dflt_cklsRepository.findCountApat();
     }
 
     @GetMapping("/echartsGTLS")
@@ -148,8 +152,8 @@ public class EChartsController {
 
     @GetMapping("/echartsSTLS")
     public List<String> echartSTLS() {
-        System.out.println(dfme_stls_stndRepository.findCountApat());
-        return dfme_stls_stndRepository.findCountApat();
+        System.out.println(dfme_stlsRepository.findCountApat());
+        return dfme_stlsRepository.findCountApat();
     }
 
     @GetMapping("/echartsDFDL")

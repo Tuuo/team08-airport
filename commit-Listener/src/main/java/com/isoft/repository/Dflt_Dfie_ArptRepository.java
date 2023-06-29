@@ -28,8 +28,8 @@ public interface Dflt_Dfie_ArptRepository  extends JpaRepository<Dflt_Dfie_Arpt,
             countQuery = "select dd.*,dda.apno,dda.apcd,dda.fptt,dda.fett,dda.frtt,dda.fplt,dda.felt,dda.frlt,dda.apat,dda.dflt_id from TEAM08.DFOE_DFIE_ARPT dda left join TEAM08.DFOE_DFIE dd on (dda.DFLT_ID = dd.flid) where flid like %:flid% and fide like %:fide%", nativeQuery = true)
     public Page<Dflt_Dfie_Arpt> findAllByCodeAndCnnmContaining(@Param("flid") String flid, @Param("fide") String fide, Pageable pageable);
 
-    @Query(value = "SELECT fatt, COUNT(*) AS count " +
+    @Query(value = "SELECT apat, COUNT(*) AS count " +
             "FROM TEAM08.DFOE_DFIE_ARPT " +
-            "GROUP BY fatt",nativeQuery = true)
+            "GROUP BY apat",nativeQuery = true)
     public List<String> findCountApat();
 }

@@ -22,8 +22,5 @@ public interface DFME_STLS_STNDRepository extends JpaRepository<DFME_STLS_STND, 
     @Query(value = "select dss.*,ds.meta_id,ds.flid,ds.ffid,ds.fide,ds.fatt from TEAM08.DFME_STLS_STND dss left join TEAM08.DFME_STLS ds on (dss.STLS_ID = ds.flid) where flid like %:flid% and fide like %:fide%", countQuery = "select dss.*,ds.meta_id,ds.flid,ds.ffid,ds.fide,ds.fatt from TEAM08.DFME_STLS_STND dss left join TEAM08.DFME_STLS ds on (dss.STLS_ID = ds.flid) where flid like %:flid% and fide like %:fide%", nativeQuery = true)
     public Page<DFME_STLS_STND> findAllByCodeAndCnnmContaining(@Param("flid") String flid, @Param("fide") String fide, Pageable pageable);
 
-    @Query(value = "SELECT fatt, COUNT(*) AS count " +
-            "FROM TEAM08.DFME_STLS_STND " +
-            "GROUP BY fatt",nativeQuery = true)
-    public List<String> findCountApat();
+
 }
