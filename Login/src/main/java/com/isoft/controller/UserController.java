@@ -2,6 +2,7 @@ package com.isoft.controller;
 
 import ch.qos.logback.core.joran.conditional.ElseAction;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.isoft.VerifyCode;
 import com.isoft.entity.Customer;
 import com.isoft.repository.CustomerRepository;
 import com.isoft.service.CustomerService;
@@ -14,7 +15,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -178,28 +185,15 @@ public class UserController {
         return map;
     }
 
+    @GetMapping("/verifyCode")
+    public void verifyCode(HttpSession session, HttpServletResponse resp) throws IOException {
+        resp.setContentType("image/jpeg");
+        VerifyCode code = new VerifyCode();
+        BufferedImage image = code.getImage();
+        String text = code.getText();
+        session.setAttribute("verify_code",text);
+        VerifyCode.output(image,resp.getOutputStream());
+    }
 
-//    @GetMapping("/toLoginU")
-//    @ResponseBody
-//    public Map<String, Object> login(@RequestParam("username") String username, @RequestParam("password") String password) {
-//        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//        // 将明文密码散列加密成 bcrypt 哈希值
-//        String hashedPassword = encoder.encode(password);
-//        Map<String, Object> map = new HashMap<>();
-//        List<Customer> all = customerService.findAll();
-//        for (Customer customer : all) {
-//            System.out.println(customer);
-//            if (username.equals(customer.getUsername()) && hashedPassword.equals(customer.getPassword())) {
-//                map.put("code", 200);
-//                map.put("message", "登录成功");
-//                System.out.println("登录成功");
-//                return map;
-//            }
-//        }
-//        System.out.println("用户名密码错误");
-//        map.put("code", -1);
-//        map.put("message", "用户名密码错误!");
-//        return map;
-//    }
 
 }
