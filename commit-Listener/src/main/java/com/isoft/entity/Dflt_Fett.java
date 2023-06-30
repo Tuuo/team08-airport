@@ -14,9 +14,9 @@ public class Dflt_Fett {
     @Id
     private Long id;
     private Long meta_id;
-    private String flid;
-    private String ffid;
-    private String fide;
-    private String fett;
-    private String felt;
+    private String flid;//航班标识标签
+    private String ffid;//航班标识
+    private String fide;//航班标识
+    private String fett;//预计起飞时间
+    private String felt;//预计降落时间
 }
