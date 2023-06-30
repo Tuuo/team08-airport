@@ -60,25 +60,25 @@ public class Dflt_Dfie_Arpt {
     private String sflg;
     private String past;
     private String gtls;
-    private String blls;
-    private String fces;
-    private String fcee;
-    private String fcrs;
-    private String fcre;
-    private String mces;
-    private String mcee;
-    private String mcrs;
-    private String mcre;
-    private String fcdp;
-    private String mcdp;
-    private String chls;
-    private String stls;
-    private String nmcd;
-    private String jmcd;
-    private String fldt;
-    private String lldt;
-    private String cont;
-    private String prox;
+    private String blls;//航班行李提取转盘动态信息标签
+    private String fces;//航班旅客值机预计开始时间1
+    private String fcee;//航班旅客值机预计结束时间1
+    private String fcrs;//航班旅客值机实际开始时间1
+    private String fcre;//航班旅客值机实际结束时间1
+    private String mces;//航班旅客值机预计开始时间2
+    private String mcee;//航班旅客值机预计结束时间2
+    private String mcrs;//航班旅客值机实际开始时间2
+    private String mcre;//航班旅客值机实际结束时间2
+    private String fcdp;//值机柜台及值机柜台区域显示1
+    private String mcdp;//值机柜台及值机柜台区域显示2
+    private String chls;//航班行李滑槽动态更新信息标签
+    private String stls;//航班机位动态更新信息标签
+    private String nmcd;//国内航站楼编号
+    private String jmcd;//国际航展楼编号
+    private String fldt;//第一件行李上架时间
+    private String lldt;//最后一件行李上架时间
+    private String cont;//起降架次
+    private String prox;//航班代理
 
     private String apno;//航站序号
     private String apcd;//航站三字码
