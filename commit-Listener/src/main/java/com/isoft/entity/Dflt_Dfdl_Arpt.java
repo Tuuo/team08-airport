@@ -14,7 +14,7 @@ public class Dflt_Dfdl_Arpt {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long meta_id;
-    private Long flid;
+    private Long flid;//航班标识标签
     private String afid;//失联航班ID
     private String ffid;//航班标识
     private String fide;//航班标识
