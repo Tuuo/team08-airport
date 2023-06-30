@@ -14,18 +14,18 @@ public class Dflt_Ckls {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long meta_id;
-    private Long flid;
-    private String ffid;
-    private String fide;
-    private String fatt;
-    private String fces;
-    private String fcee;
-    private String fcrs;
-    private String fcre;
-    private String mces;
-    private String mcee;
-    private String mcrs;
-    private String mcre;
-    private String fcdp;
-    private String mcdp;
+    private Long flid;//航班标识标签
+    private String ffid;//航班标识
+    private String fide;//航班标识
+    private String fatt;//航班属性
+    private String fces;//航班旅客值机预计开始时间1
+    private String fcee;//航班旅客值机预计结束时间1
+    private String fcrs;//航班旅客值机实际开始时间1
+    private String fcre;//航班旅客值机实际结束时间1
+    private String mces;//航班旅客值机预计开始时间2
+    private String mcee;//航班旅客值机预计结束时间2
+    private String mcrs;//航班旅客值机实际开始时间2
+    private String mcre;//航班旅客值机实际结束时间2
+    private String fcdp;//值机柜台及值机柜台区域显示1
+    private String mcdp;//值机柜台及值机柜台区域显示2
 }

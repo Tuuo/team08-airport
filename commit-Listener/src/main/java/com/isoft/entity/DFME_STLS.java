@@ -14,10 +14,10 @@ public class DFME_STLS {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Long meta_id;
-    private Long flid;
-    private String ffid;
-    private String fide;
-    private String fatt;
+    private Long flid;//航班标识标签
+    private String ffid;//航班标识
+    private String fide;//航班标识
+    private String fatt;//航班属性
 
     public Integer getId() {
         return id;
