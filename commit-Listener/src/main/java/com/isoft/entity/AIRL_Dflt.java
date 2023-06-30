@@ -14,7 +14,7 @@ public class AIRL_Dflt {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Long meta_id;
-    private Long flid;
-    private String fide;
-    private String ffid;
+    private Long flid;//航班标识标签
+    private String fide;//航班标识
+    private String ffid;//航班标识
 }

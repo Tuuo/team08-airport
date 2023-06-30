@@ -13,14 +13,14 @@ public class AIRL_Arpt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private Integer apno;
-    private String apcd;
-    private String fptt;
-    private String fett;
-    private String frtt;
-    private String fplt;
-    private String felt;
-    private String frlt;
-    private String apat;
+    private Integer apno;//航站序号
+    private String apcd;//航站三字码
+    private String fptt;//计划起飞时间
+    private String fett;//预计起飞时间
+    private String frtt;//实际起飞时间
+    private String fplt;//计划降落时间
+    private String felt;//预计降落时间
+    private String frlt;//实际降落时间
+    private String apat;//航站属性
     private Integer airl_Id;
 }
