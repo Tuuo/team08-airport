@@ -7,8 +7,14 @@
     <!-- 引入 jQuery 文件 -->
 
     <style>
+        body {
+            background-image: url(/img/3.png);
+            background-size: 100vw 100vh;
+            background-repeat: no-repeat;
+            overflow: hidden;
+        }
         .demo-reg-container {
-            width: 320px;
+            width: 400px;
             margin: 21px auto 0;
         }
 
@@ -20,19 +26,30 @@
             font-size: 26px;
         }
 
-        .layui-bg-gray {
+        .layui-container{
+            /*background-image: url(../img/2.jpg);*/
             width: 100vw;
             height: 100vh;
+            /*margin:30vh auto;*/
         }
 
         .layui-col-md6 {
-            margin: 10vh 25vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20vh 45vw;
+        }
+        .layui-card{
+            padding: 10px;
+            border-radius: 10px;
+            /* border: 1px solid #000; */
+            box-shadow: 1px 1px 6px 1px #0a0a0a;
         }
     </style>
 </head>
 <body>
 
-<div class="layui-bg-gray" style="padding: 16px;">
+<div class="layui-container" style="padding: 16px;">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md6">
             <div class="layui-card">

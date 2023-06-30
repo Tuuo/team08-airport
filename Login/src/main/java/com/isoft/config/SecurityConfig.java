@@ -46,7 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //自定义用户访问控制
-        http.authorizeHttpRequests().antMatchers("/","/layui/css/**","/css/**","/layui/**","/js/**","/img/**","/qinjiang/css/**","/qinjiang/js/**","/verifyCode")//开启Ant等个路径匹配
+        http.authorizeHttpRequests().antMatchers("/","/layui/css/**","/css/**","/layui/**","/js/**","/img/**","/qinjiang/css/**","/qinjiang/js/**","/verifyCode","/favicon.ico")//开启Ant等个路径匹配
                 .permitAll()
                 .antMatchers("/register").permitAll().antMatchers("/toLogin").permitAll()//无条件对请求放行
                 .antMatchers("/level1/**").hasRole("vip1")

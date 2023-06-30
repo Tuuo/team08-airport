@@ -4,6 +4,7 @@ import ch.qos.logback.core.joran.conditional.ElseAction;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.isoft.VerifyCode;
 import com.isoft.entity.Customer;
+import com.isoft.entity.RespBean;
 import com.isoft.repository.CustomerRepository;
 import com.isoft.service.CustomerService;
 import dm.jdbc.filter.stat.util.JSONUtils;
@@ -193,6 +194,18 @@ public class UserController {
         String text = code.getText();
         session.setAttribute("verify_code",text);
         VerifyCode.output(image,resp.getOutputStream());
+    }
+
+    @RequestMapping("/checkCode")
+    @ResponseBody
+    public RespBean checkCode(String code, HttpSession session) {
+        // 获取 session 中保存的验证码
+        String verify_code = (String) session.getAttribute("verify_code");
+        if (verify_code == null || !verify_code.equalsIgnoreCase(code)) {
+            // 验证码不正确，返回错误信息
+            return RespBean.error("验证码填写错误");
+        }
+        return RespBean.sucess("登录成功");
     }
 
 
