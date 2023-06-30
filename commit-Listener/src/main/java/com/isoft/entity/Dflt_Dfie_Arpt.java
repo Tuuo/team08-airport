@@ -40,26 +40,26 @@ public class Dflt_Dfie_Arpt {
     private String msta;
     private String mabs;
     private String mabr;
-    private String mist;
-    private String mias;
-    private String miar;
-    private String bort;
-    private String mbor;
-    private String tbrt;
-    private String mtbr;
-    private String lbdt;
-    private String mlbd;
-    private String pokt;
-    private String mpok;
-    private String apot;
-    private String dett;
-    private String drtt;
-    private String delt;
-    private String drlt;
-    private String vip;
-    private String sflg;
-    private String past;
-    private String gtls;
+    private String mist;//内部航班状态2
+    private String mias;//内部航班不正常状态2
+    private String miar;//内部航班不正常原因2
+    private String bort;//航班开始登机实际时间
+    private String mbor;//航班开始登机实际时间
+    private String tbrt;//航班过站登机实际时间
+    private String mtbr;//航班过站登机实际时间
+    private String lbdt;//航班催促登机实际时间
+    private String mlbd;//航班催促登机实际时间
+    private String pokt;//航班结束登机实际时间
+    private String mpok;//航班结束登机实际时间
+    private String apot;//备降航站
+    private String dett;//备降预计起飞时间
+    private String drtt;//备降实际起飞时间
+    private String delt;//备降预计降落时间
+    private String drlt;//备降实际降落时间
+    private String vip;//VIP人数
+    private String sflg;//共享航站组标签
+    private String past;//前站实际起飞时间
+    private String gtls;//航班登机门动态信息标签
     private String blls;//航班行李提取转盘动态信息标签
     private String fces;//航班旅客值机预计开始时间1
     private String fcee;//航班旅客值机预计结束时间1
