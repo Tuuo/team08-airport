@@ -14,32 +14,32 @@ public class Dflt_Dfie_Arpt {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long meta_id;
-    private Long flid;
-    private String afid;
-    private String ffid;
-    private String fide;
+    private Long flid;//航班标识标签
+    private String afid;//失联航班ID
+    private String ffid;//航班标识
+    private String fide;//航班标识
     private String test;
-    private String awcd;
-    private String flno;
-    private String fexd;
-    private String fimd;
-    private String flio;
-    private String fltk;
-    private String fatt;
-    private String patt;
-    private String mfid;
-    private String mffi;
-    private String cftp;
-    private String cfno;
-    private String stat;
-    private String abst;
-    private String abrs;
-    private String ista;
-    private String iast;
-    private String iars;
-    private String msta;
-    private String mabs;
-    private String mabr;
+    private String awcd;//航空公司二字码
+    private String flno;//航班号
+    private String fexd;//航班执行日期
+    private String fimd;//航班所属计划批次的标识日期
+    private String flio;//航班进出标识
+    private String fltk;//航班任务
+    private String fatt;//航班属性
+    private String patt;//航班属性旧值
+    private String mfid;//主航班标识
+    private String mffi;//主航班标识
+    private String cftp;//机型
+    private String cfno;//机号
+    private String stat;//航班发布状态
+    private String abst;//航班发布不正常状态
+    private String abrs;//航班发布不正常原因
+    private String ista;//航班状态
+    private String iast;//内部航班不正常状态
+    private String iars;//内部航班不正常原因
+    private String msta;//航班发布状态2
+    private String mabs;//航班发布不正常状态2
+    private String mabr;//航班发布不正常原因
     private String mist;//内部航班状态2
     private String mias;//内部航班不正常状态2
     private String miar;//内部航班不正常原因2
