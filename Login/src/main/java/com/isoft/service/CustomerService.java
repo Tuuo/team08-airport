@@ -45,8 +45,8 @@ public class CustomerService {
     }
 
     //查询所有用户，调用customerRepository的findAllUsers方法返回用户列表。
-    public List<Customer> findAll(){
-        return customerRepository.findAllUsers();
+    public Customer findAll(String username ,String password){
+        return customerRepository.findAllUsers(username,password);
     }
 
     //通过用户名查询用户权限信息，首先尝试从缓存中获取用户权限信息，

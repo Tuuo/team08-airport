@@ -136,8 +136,6 @@
             page: true, // 是否显示分页
             limits: [10, 15, 20],
             limit: 10 // 每页默认显示的数量
-
-
         });
 
     });
@@ -147,12 +145,11 @@
         .then(response => {
             const data = response.data.map(item => {
                 const [name, value] = item.split(',');
-                return { name: name === '2403' ? '国内' : name === '2401' ? '国际' : name === '2402' ? '混合' :'地区', value: parseInt(value) };
+                return { name: name === '2403' ? '国内' : name === '2401' ? '国际' : name === '2402'
+                        ? '混合' :'地区', value: parseInt(value) };
             });
-
             // 创建 ECharts 实例
             const myChart = echarts.init(document.getElementById('chart'));
-
             // 设置图表的基本属性
             myChart.setOption({
                 title: {
@@ -173,7 +170,6 @@
                     data: data
                 }]
             });
-
             // 渲染图表
             myChart.render();
         })

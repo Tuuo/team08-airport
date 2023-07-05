@@ -14,6 +14,6 @@ public interface CustomerRepository extends JpaRepository<Customer,Integer> {
     public Integer saveUser(String username,String password);
     @Query(value = "select * from DB_CLOUD.t_customer where username = ?1",nativeQuery = true)
     public Customer findByUsername(String username);
-    @Query(value = "select * from DB_CLOUD.t_customer",nativeQuery = true)
-    public List<Customer> findAllUsers();
+    @Query(value = "select * from DB_CLOUD.t_customer where username = ?1 and password =?2",nativeQuery = true)
+    public Customer findAllUsers(String username,String password);
 }

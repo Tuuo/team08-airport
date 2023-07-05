@@ -36,6 +36,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     VerifyCodeFilter verifyCodeFilter;
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
+    MyAuthenticationFailureHandler myAuthenticationFailureHandler;
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -57,14 +60,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //没有权限默认到登录页面
         http.formLogin().loginPage("/toLogin").loginProcessingUrl("/toLogin").permitAll().usernameParameter("username")
                 .passwordParameter("password").defaultSuccessUrl("/")//.failureHandler(authenticationFailureHandler)
-                .failureForwardUrl("/toLogin?error=true").permitAll();
+                .failureHandler(myAuthenticationFailureHandler).permitAll();
 
         //自定义用户登出
         http.logout();
+//
+//        //记住我
+////        http.rememberMe().rememberMeParameter("remember").tokenValiditySeconds(200)
+////                .tokenRepository(tokenRepository());
 
-        //记住我
-//        http.rememberMe().rememberMeParameter("remember").tokenValiditySeconds(200)
-//                .tokenRepository(tokenRepository());
         http.csrf().disable(); //关闭csrf功能，登陆失败可能出现的原因
         http.addFilterBefore(verifyCodeFilter, UsernamePasswordAuthenticationFilter.class);
     }
