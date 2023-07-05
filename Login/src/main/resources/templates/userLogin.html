@@ -146,12 +146,6 @@
                 type: 'post',
                 data: data.field,
                 success: function (res) {
-                    // if (res.code === 500) {
-                    //     // 登录失败，显示错误信息
-                    //     layer.alert("验证码错误，请重新输入！");
-                    //     console.log(res.status)
-                    // } else {
-                        console.log(res.status)
                         if (res.status === 'error') {
                             // 登录失败，显示错误信息
                             layer.alert(res.msg);
@@ -161,11 +155,6 @@
                         }else{
                             location.href = '/index';
                         }
-                    // }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    // 显示错误提示框
-                    layer.alert("登录失败，请检查用户名和密码是否正确！");
                 }
             });
             return false;
