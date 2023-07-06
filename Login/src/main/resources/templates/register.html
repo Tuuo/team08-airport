@@ -140,7 +140,7 @@
         });
         form.on('submit(demo-reg)', function (data) {
             if(!data.field.agreement){
-                layer.msg('您必须勾选同意用户协议才能注册');
+                layer.alert('您必须勾选同意用户协议才能注册');
                 return false;
             }
             // 禁用表单按钮，防止重复提交

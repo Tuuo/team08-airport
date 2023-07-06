@@ -120,7 +120,6 @@ public class XmlAnaly {
             Apot apot = new Apot();
             for (Element e : elements) {
                 if (e == element2) {
-//                    apot.setMeta_id(meta.getSeqn());
                     apot.setCode(e.elementText("CODE"));
                     apot.setFrcd(e.elementText("APAT"));
                     apot.setApat(e.elementText("APAT"));
@@ -128,18 +127,10 @@ public class XmlAnaly {
                     apot.setEnnm(e.elementText("ENNM"));
                     apot.setAiso(e.elementText("AISO"));
                     apot.setApsn(e.elementText("APSN"));
-//                    System.out.println(apot);
                     break;
                 }
             }
             System.out.println(apot);
-            System.out.println(meta.getSeqn());
-            if (apotRepository == null) {
-//                throw new IllegalStateException("apotRepository not initialized");
-                System.out.println("apotRepository为空");
-            } else {
-                System.out.println("apotRepository不为空");
-            }
             apotRepository.saveApot(meta.getSeqn(), apot.getCode(), apot.getFrcd(),
                     apot.getApat(), apot.getCnnm(), apot.getEnnm(),
                     apot.getAiso(), apot.getApsn());
